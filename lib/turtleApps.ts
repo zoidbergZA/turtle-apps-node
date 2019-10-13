@@ -1,20 +1,21 @@
+import axios from 'axios';
+
 export class TurtleApps {
 
     private apiBase = 'https://trtlapps.io/api/';
     private initialized: boolean;
     private appId: string | undefined;
-    private appSecret: string | undefined;
 
     constructor(appId: string, appSecret: string) {
         this.appId = appId;
-        this.appSecret = appSecret;
         this.initialized = true;
+        axios.defaults.headers.common = {'Authorization': `Bearer ${appSecret}`}
     }
 
     public initialize(appId: string, appSecret: string): void {
         this.appId = appId;
-        this.appSecret = appSecret;
         this.initialized = true;
+        axios.defaults.headers.common = {'Authorization': `Bearer ${appSecret}`}
     }
 
     public isInitialized(): boolean {
@@ -25,13 +26,18 @@ export class TurtleApps {
         return this.appId;
     }
 
-    public createUser(): string | null {
+    public async createUser(): Promise<any> {
         if (!this.initialized) {
-            return null;
+            return Promise.reject('apps backend not initialized!');
         }
 
-        const endpoint = `${this.apiBase}/createuser/?appId=${this.appId}`;
+        const endpoint = `${this.apiBase}createuser/?appId=${this.appId}`;
 
-        return null;
+        try {
+            const response = await axios.get(endpoint);
+            return Promise.resolve(response.data);
+        } catch (error) {
+            return Promise.reject(error);
+        }
     }
 }
