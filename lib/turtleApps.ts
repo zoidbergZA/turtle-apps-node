@@ -1,13 +1,14 @@
 export class TurtleApps {
 
+    private apiBase = 'https://trtlapps.io/api/';
     private initialized: boolean;
-    private apiBase: string;
     private appId: string | undefined;
     private appSecret: string | undefined;
 
-    constructor(apiBase: string) {
-        this.apiBase = apiBase;
-        this.initialized = false;
+    constructor(appId: string, appSecret: string) {
+        this.appId = appId;
+        this.appSecret = appSecret;
+        this.initialized = true;
     }
 
     public initialize(appId: string, appSecret: string): void {
@@ -24,7 +25,13 @@ export class TurtleApps {
         return this.appId;
     }
 
-    public helloWorld(): string {
-        return `hello from node backend! apiBase: ${this.apiBase}`;
+    public createUser(): string | null {
+        if (!this.initialized) {
+            return null;
+        }
+
+        const endpoint = `${this.apiBase}/createuser/?appId=${this.appId}`;
+
+        return null;
     }
 }
