@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { AppUser } from './types';
+import { ServiceError } from 'serviceError';
 
 export class TurtleApps {
 
@@ -26,18 +28,18 @@ export class TurtleApps {
         return this.appId;
     }
 
-    public async createUser(): Promise<any> {
+    public async createUser(): Promise<[AppUser | undefined, undefined | ServiceError]> {
         if (!this.initialized) {
-            return Promise.reject('apps backend not initialized!');
+            return [undefined, new ServiceError('service/not-initialized')];
         }
 
         const endpoint = `${this.apiBase}createuser/?appId=${this.appId}`;
 
         try {
             const response = await axios.get(endpoint);
-            return Promise.resolve(response.data);
+            return [response.data as AppUser, undefined];
         } catch (error) {
-            return Promise.reject(error);
+            return [undefined, new ServiceError('service/unknown-error')];
         }
     }
 }
