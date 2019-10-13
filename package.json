@@ -2,12 +2,15 @@
   "name": "turtle-apps-node",
   "version": "0.0.1",
   "description": "a node-js package for interacting with turtle apps",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/lib/index.js",
+  "types": "dist/lib/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "dist/lib/*"
+  ],
   "author": "zoidbergZA",
   "license": "GPL-3.0-or-later"
 }
