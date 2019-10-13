@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { AppUser } from './types';
-import { ServiceError } from 'serviceError';
+import { ServiceError } from './serviceError';
 
 export class TurtleApps {
 

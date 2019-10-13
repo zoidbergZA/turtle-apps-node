@@ -15,7 +15,7 @@ export class ServiceError {
         }
     }
 
-    getMessage(errorCode: ServiceErrorCode): string {
+    private getMessage(errorCode: ServiceErrorCode): string {
         switch (errorCode) {
             case 'service/not-initialized':
                 return 'The service has not yet been initialized.';
