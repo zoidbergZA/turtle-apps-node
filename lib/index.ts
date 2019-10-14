@@ -1,2 +1,2 @@
-export { TrtlAppsBackend } from './turtleApps';
+export { TrtlAppsBackend } from './TrtlAppsBackend';
 export { ServiceError, ServiceErrorCode } from './serviceError';
