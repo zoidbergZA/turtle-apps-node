@@ -2,16 +2,14 @@ import axios from 'axios';
 import { AppUser } from './types';
 import { ServiceError } from './serviceError';
 
-export class TurtleApps {
+export class TrtlAppsBackend {
 
     private apiBase = 'https://trtlapps.io/api/';
-    private initialized: boolean;
+    private initialized: boolean = false;
     private appId: string | undefined;
 
     constructor(appId: string, appSecret: string) {
-        this.appId = appId;
-        this.initialized = true;
-        axios.defaults.headers.common = {'Authorization': `Bearer ${appSecret}`}
+        this.initialize(appId, appSecret);
     }
 
     public initialize(appId: string, appSecret: string): void {
