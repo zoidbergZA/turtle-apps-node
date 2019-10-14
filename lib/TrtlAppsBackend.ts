@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AppUser } from './types';
+import { AppUser, AppDepositRequest } from './types';
 import { ServiceError } from './serviceError';
 
 export class TrtlAppsBackend {
@@ -31,11 +31,29 @@ export class TrtlAppsBackend {
             return [undefined, new ServiceError('service/not-initialized')];
         }
 
-        const endpoint = `${this.apiBase}createuser/?appId=${this.appId}`;
+        const endpoint = `${this.apiBase}createuser?appId=${this.appId}`;
 
         try {
             const response = await axios.get(endpoint);
             return [response.data as AppUser, undefined];
+        } catch (error) {
+            return [undefined, new ServiceError('service/unknown-error')];
+        }
+    }
+
+    public async depositRequest(
+        userId: string,
+        amount: number) : Promise<[AppDepositRequest | undefined, undefined | ServiceError]> {
+
+        if (!this.initialized) {
+            return [undefined, new ServiceError('service/not-initialized')];
+        }
+
+        const endpoint = `${this.apiBase}depositrequest?appId=${this.appId}&userId=${userId}&amount=${amount}`;
+
+        try {
+            const response = await axios.get(endpoint);
+            return [response.data as AppDepositRequest, undefined];
         } catch (error) {
             return [undefined, new ServiceError('service/unknown-error')];
         }
