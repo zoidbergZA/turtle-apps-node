@@ -71,7 +71,7 @@ export class TrtlAppsBackend {
 
         try {
             const response = await axios.get(endpoint);
-            return [response.data as string, undefined];
+            return [response.data.withdrawAddress as string, undefined];
         } catch (error) {
             return [undefined, error.response.data];
         }
