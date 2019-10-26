@@ -30,3 +30,12 @@ export interface AppDepositRequest {
   qrCode: string;
   lastUpdate: number;
 }
+
+export interface UserTransfer {
+  transferId: string;
+  appId: string;
+  senderId: string;
+  receiverId: string;
+  amount: number;
+  timestamp: number;
+}

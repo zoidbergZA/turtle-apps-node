@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AppUser, AppDepositRequest } from './types';
+import { AppUser, AppDepositRequest, UserTransfer } from './types';
 import { ServiceError } from './serviceError';
 
 export class TrtlAppsBackend {
@@ -72,6 +72,25 @@ export class TrtlAppsBackend {
         try {
             const response = await axios.get(endpoint);
             return [response.data.withdrawAddress as string, undefined];
+        } catch (error) {
+            return [undefined, error.response.data];
+        }
+    }
+
+    public async userTransfer(
+        senderId: string,
+        receiverId: string,
+        amount: number): Promise<[string | undefined, undefined | ServiceError]> {
+
+        if (!this.initialized) {
+            return [undefined, new ServiceError('service/not-initialized')];
+        }
+
+        const endpoint = `${this.apiBase}usertransfer?appId=${this.appId}&senderId=${senderId}&receiverId=${receiverId}&amount=${amount}`;
+
+        try {
+            const response = await axios.get(endpoint);
+            return [response.data.transferId as string, undefined];
         } catch (error) {
             return [undefined, error.response.data];
         }
