@@ -95,4 +95,22 @@ export class TrtlAppsBackend {
             return [undefined, error.response.data];
         }
     }
+
+    public async withdraw(
+        userId: string,
+        amount: number): Promise<[string | undefined, undefined | ServiceError]> {
+
+        if (!this.initialized) {
+            return [undefined, new ServiceError('service/not-initialized')];
+        }
+
+        const endpoint = `${this.apiBase}withdraw?appId=${this.appId}&userId=${userId}&amount=${amount}`;
+
+        try {
+            const response = await axios.get(endpoint);
+            return [response.data.requestId as string, undefined];
+        } catch (error) {
+            return [undefined, error.response.data];
+        }
+    }
 }
