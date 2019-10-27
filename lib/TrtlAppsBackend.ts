@@ -96,6 +96,21 @@ export class TrtlAppsBackend {
         }
     }
 
+    public async getFee(): Promise<[number | undefined, undefined | ServiceError]> {
+        if (!this.initialized) {
+            return [undefined, new ServiceError('service/not-initialized')];
+        }
+
+        const endpoint = `${this.apiBase}getfee?appId=${this.appId}`;
+
+        try {
+            const response = await axios.get(endpoint);
+            return [response.data.fee as number, undefined];
+        } catch (error) {
+            return [undefined, error.response.data];
+        }
+    }
+
     public async withdraw(
         userId: string,
         amount: number): Promise<[string | undefined, undefined | ServiceError]> {
