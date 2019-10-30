@@ -9,7 +9,8 @@ export class TrtlApp {
 
     /**
      * Example:
-     * ```typescript
+     *
+     * ```ts
      * import { TrtlApp } from 'turtle-apps-node';
      *
      * TrtlApp.initialize('YOUR_APP_ID', 'YOUR_APP_SECRET');
