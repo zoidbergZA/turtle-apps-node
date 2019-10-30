@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { AppUser, AppDepositRequest, UserTransfer } from './types';
-import { ServiceError } from './serviceError';
+import { AppUser, AppDepositRequest, UserTransfer } from './Types';
+import { ServiceError } from './ServiceError';
 
 export class TrtlApp {
     private static readonly apiBase = 'https://trtlapps.io/api/';

@@ -1,2 +1,2 @@
 export { TrtlApp } from './TrtlApp';
-export { ServiceError, ServiceErrorCode } from './serviceError';
+export { ServiceError, ServiceErrorCode } from './ServiceError';
