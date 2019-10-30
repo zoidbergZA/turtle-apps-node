@@ -8,7 +8,17 @@ export class TrtlAppsBackend {
     private static appId: string | undefined;
 
     /**
-     * Initializes the app service.
+     * Example:
+     * ```javascript
+     * import { TrtlAppsBackend as TA } from 'turtle-apps-node';
+     *
+     * TA.initialize('YOUR_APP_ID', 'YOUR_APP_SECRET');
+     *
+     * if (!error) {
+     *      console.log(`Created subwallet with address of ${address}`);
+     * }
+     * ```
+     * Initializes the app service, call this before any other functions.
      * @param {string} appId - The ID of the app the app.
      * @param {string} appSecret - The secret key of the app.
      */
