@@ -6,7 +6,7 @@
   "types": "dist/lib/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "docs": "./node_modules/.bin/typedoc --out docs ./lib && copyfiles --all --soft --up 1 docs-includes/* docs",
+    "docs": "./node_modules/.bin/typedoc ./lib && copyfiles --all --soft --up 1 docs-includes/* docs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "files": [
