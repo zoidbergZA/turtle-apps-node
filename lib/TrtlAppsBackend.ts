@@ -3,41 +3,31 @@ import { AppUser, AppDepositRequest, UserTransfer } from './types';
 import { ServiceError } from './serviceError';
 
 export class TrtlAppsBackend {
-
-    private apiBase = 'https://trtlapps.io/api/';
-    private initialized: boolean = false;
-    private appId: string | undefined;
-
-    /**
-     * Initializes the app service.
-     * @constructor
-     * @param {string} appId - The ID of the app the app.
-     * @param {string} appSecret - The secret key of the app.
-     */
-    constructor(appId: string, appSecret: string) {
-        this.initialize(appId, appSecret);
-    }
+    private static readonly apiBase = 'https://trtlapps.io/api/';
+    private static initialized: boolean = false;
+    private static appId: string | undefined;
 
     /**
      * Initializes the app service.
      * @param {string} appId - The ID of the app the app.
      * @param {string} appSecret - The secret key of the app.
      */
-    public initialize(appId: string, appSecret: string): void {
+    public static initialize(appId: string, appSecret: string): void {
         this.appId = appId;
-        this.initialized = true;
         axios.defaults.headers.common = {'Authorization': `Bearer ${appSecret}`}
+
+        this.initialized = true;
     }
 
-    public isInitialized(): boolean {
+    public static isInitialized(): boolean {
         return this.initialized;
     }
 
-    public getAppId(): string | undefined {
+    public static getAppId(): string | undefined {
         return this.appId;
     }
 
-    public async createUser(): Promise<[AppUser | undefined, undefined | ServiceError]> {
+    public static async createUser(): Promise<[AppUser | undefined, undefined | ServiceError]> {
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
         }
@@ -52,7 +42,7 @@ export class TrtlAppsBackend {
         }
     }
 
-    public async depositRequest(
+    public static async depositRequest(
         userId: string,
         amount: number): Promise<[AppDepositRequest | undefined, undefined | ServiceError]> {
 
@@ -70,7 +60,7 @@ export class TrtlAppsBackend {
         }
     }
 
-    public async setWithdrawAddress(
+    public static async setWithdrawAddress(
         userId: string,
         address: string): Promise<[string | undefined, undefined | ServiceError]> {
 
@@ -88,7 +78,7 @@ export class TrtlAppsBackend {
         }
     }
 
-    public async userTransfer(
+    public static async userTransfer(
         senderId: string,
         receiverId: string,
         amount: number): Promise<[string | undefined, undefined | ServiceError]> {
@@ -107,7 +97,7 @@ export class TrtlAppsBackend {
         }
     }
 
-    public async getFee(): Promise<[number | undefined, undefined | ServiceError]> {
+    public static async getFee(): Promise<[number | undefined, undefined | ServiceError]> {
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
         }
@@ -122,7 +112,7 @@ export class TrtlAppsBackend {
         }
     }
 
-    public async withdraw(
+    public static async withdraw(
         userId: string,
         amount: number): Promise<[string | undefined, undefined | ServiceError]> {
 
