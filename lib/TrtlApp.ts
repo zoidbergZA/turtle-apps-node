@@ -2,7 +2,7 @@ import axios from 'axios';
 import { AppUser, AppDepositRequest, UserTransfer } from './types';
 import { ServiceError } from './serviceError';
 
-export class TrtlAppsBackend {
+export class TrtlApp {
     private static readonly apiBase = 'https://trtlapps.io/api/';
     private static initialized: boolean = false;
     private static appId: string | undefined;
@@ -10,13 +10,9 @@ export class TrtlAppsBackend {
     /**
      * Example:
      * ```javascript
-     * import { TrtlAppsBackend as TA } from 'turtle-apps-node';
+     * import { TrtlApp } from 'turtle-apps-node';
      *
-     * TA.initialize('YOUR_APP_ID', 'YOUR_APP_SECRET');
-     *
-     * if (!error) {
-     *      console.log(`Created subwallet with address of ${address}`);
-     * }
+     * TrtlApp.initialize('YOUR_APP_ID', 'YOUR_APP_SECRET');
      * ```
      * Initializes the app service, call this before any other functions.
      * @param {string} appId - The ID of the app the app.
