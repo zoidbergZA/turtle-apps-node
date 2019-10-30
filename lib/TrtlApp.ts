@@ -26,14 +26,6 @@ export class TrtlApp {
         this.initialized = true;
     }
 
-    public static isInitialized(): boolean {
-        return this.initialized;
-    }
-
-    public static getAppId(): string | undefined {
-        return this.appId;
-    }
-
     public static async createUser(): Promise<[AppUser | undefined, undefined | ServiceError]> {
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
