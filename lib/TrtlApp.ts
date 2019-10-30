@@ -8,6 +8,8 @@ export class TrtlApp {
     private static appId: string | undefined;
 
     /**
+     * Initializes the app service, call this before any other functions.
+     *
      * Example:
      *
      * ```ts
@@ -15,7 +17,6 @@ export class TrtlApp {
      *
      * TrtlApp.initialize('YOUR_APP_ID', 'YOUR_APP_SECRET');
      * ```
-     * Initializes the app service, call this before any other functions.
      * @param {string} appId - The ID of the app the app.
      * @param {string} appSecret - The secret key of the app.
      */

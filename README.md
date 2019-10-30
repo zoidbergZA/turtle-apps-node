@@ -1,7 +1,13 @@
 # turtle-apps-node
 a node-js package for interacting with turtle apps
 
-## Generate documentation website
+## Quickstart
+
+...
+
+## Contributing
+
+### Generate documentation website
 
 The copyfiles package must be installed globally
 
