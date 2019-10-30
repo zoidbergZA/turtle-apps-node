@@ -2,5 +2,6 @@
     "out": "docs",
     "exclude": [
     "./lib/index.ts"
-    ]
+    ],
+    "excludePrivate": true
 }

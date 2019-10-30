@@ -9,6 +9,7 @@ export class TrtlApp {
 
     /**
      * Initializes the app service, call this before any other functions.
+     * You can find your app ID and secret in the developer console.
      *
      * Example:
      *
@@ -17,7 +18,7 @@ export class TrtlApp {
      *
      * TrtlApp.initialize('YOUR_APP_ID', 'YOUR_APP_SECRET');
      * ```
-     * @param {string} appId - The ID of the app the app.
+     * @param {string} appId - The ID of the app.
      * @param {string} appSecret - The secret key of the app.
      */
     public static initialize(appId: string, appSecret: string): void {
