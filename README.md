@@ -3,8 +3,10 @@ a node-js package for interacting with turtle apps
 
 ## Generate documentation website
 
-First, compile the javascript using `tsc`
+The copyfiles package must be installed globally
 
-Use the following command to generate the documentation site(requires JsDoc3 installed globally).
+`npm i copyfiles -g`
 
-`jsdoc dist/lib/TrtlAppsBackend.js -d ./docs`
+Use the following command to generate the documentation site.
+
+`npm run docs`
