@@ -12,6 +12,11 @@ export class TrtlAppsBackend {
         this.initialize(appId, appSecret);
     }
 
+    /**
+     * Initializes the app service.
+     * @param {string} appId - The ID of the app the app.
+     * @param {string} appSecret - The secret key of the app.
+     */
     public initialize(appId: string, appSecret: string): void {
         this.appId = appId;
         this.initialized = true;
