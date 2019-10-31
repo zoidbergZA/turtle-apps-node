@@ -14,7 +14,7 @@ export class TrtlApp {
      * Example:
      *
      * ```ts
-     * import { TrtlApp } from 'turtle-apps-node';
+     * import { TrtlApp } from 'trtl-apps';
      *
      * TrtlApp.initialize('YOUR_APP_ID', 'YOUR_APP_SECRET');
      * ```
