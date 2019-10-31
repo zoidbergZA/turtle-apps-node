@@ -28,6 +28,21 @@ export class TrtlApp {
         this.initialized = true;
     }
 
+    /**
+     * Creates a new app user.
+     *
+     * Example:
+     *
+     * ```ts
+     *
+     * const [userId, error] = TrtlApp.createUser();
+     *
+     * if (userId) {
+     *  console.log(`New user created with id: ${userId}`);
+     * }
+     * ```
+     * @returns {string} Returns the userId of the newly created user or an error.
+     */
     public static async createUser(): Promise<[string | undefined, undefined | ServiceError]> {
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
