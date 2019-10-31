@@ -109,7 +109,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/1081034/lib/TrtlApp.ts#L46">TrtlApp.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/c74311f/lib/TrtlApp.ts#L46">TrtlApp.ts:46</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -139,19 +139,38 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/1081034/lib/TrtlApp.ts#L76">TrtlApp.ts:76</a></li>
+									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/c74311f/lib/TrtlApp.ts#L109">TrtlApp.ts:109</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a new deposit request for the user.</p>
+								</div>
+								<p>Example:</p>
+								<pre><code class="language-ts">
+<span class="hljs-keyword">const</span> [depositRequest, error] = TrtlApp.depositRequest(<span class="hljs-string">'8RgwiWmgiYKQlUHWGaTW'</span>, <span class="hljs-number">42</span>);
+
+<span class="hljs-keyword">if</span> (depositRequest) {
+ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`new deposit request created. qr code: <span class="hljs-subst">${depositRequest.qrCode}</span>`</span>);
+}</code></pre>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>userId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The id of the user to create the deposit request for.</p>
+									</div>
 								</li>
 								<li>
 									<h5>amount: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The amount the user should deposit in atomic units.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><a href="../interfaces/_types_.appdepositrequest.html" class="tsd-signature-type">AppDepositRequest</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="_serviceerror_.serviceerror.html" class="tsd-signature-type">ServiceError</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Returns the newly created deposit request object or an error.</p>
 						</li>
 					</ul>
 				</section>
@@ -165,10 +184,23 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/1081034/lib/TrtlApp.ts#L131">TrtlApp.ts:131</a></li>
+									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/c74311f/lib/TrtlApp.ts#L214">TrtlApp.ts:214</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the current node fee that will be charged on user withdrawals.</p>
+								</div>
+								<p>Example:</p>
+								<pre><code class="language-ts">
+<span class="hljs-keyword">const</span> [fee, error] = TrtlApp.getFee();
+
+<span class="hljs-keyword">if</span> (fee) {
+ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`The current node fee for user withdrawals is: <span class="hljs-subst">${fee}</span>`</span>);
+}</code></pre>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="_serviceerror_.serviceerror.html" class="tsd-signature-type">ServiceError</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Returns the withdraw fee in atomic units or an error.</p>
 						</li>
 					</ul>
 				</section>
@@ -182,16 +214,32 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/1081034/lib/TrtlApp.ts#L61">TrtlApp.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/c74311f/lib/TrtlApp.ts#L77">TrtlApp.ts:77</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets an existing app user.</p>
+								</div>
+								<p>Example:</p>
+								<pre><code class="language-ts">
+<span class="hljs-keyword">const</span> [user, error] = TrtlApp.getUser(<span class="hljs-string">'8RgwiWmgiYKQlUHWGaTW'</span>);
+
+<span class="hljs-keyword">if</span> (user) {
+ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`User with id: <span class="hljs-subst">${userId}</span> has balance: <span class="hljs-subst">${user.balanceUnlocked}</span>`</span>);
+}</code></pre>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>userId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The ID of the user to retrieve.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><a href="../interfaces/_types_.appuser.html" class="tsd-signature-type">AppUser</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="_serviceerror_.serviceerror.html" class="tsd-signature-type">ServiceError</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Returns the user object or an error.</p>
 						</li>
 					</ul>
 				</section>
@@ -205,7 +253,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/1081034/lib/TrtlApp.ts#L24">TrtlApp.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/c74311f/lib/TrtlApp.ts#L24">TrtlApp.ts:24</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -247,19 +295,38 @@ TrtlApp.initialize(<span class="hljs-string">'YOUR_APP_ID'</span>, <span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/1081034/lib/TrtlApp.ts#L94">TrtlApp.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/c74311f/lib/TrtlApp.ts#L144">TrtlApp.ts:144</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the withdraw address for a user.</p>
+								</div>
+								<p>Example:</p>
+								<pre><code class="language-ts">
+<span class="hljs-keyword">const</span> [address, error] = TrtlApp.setWithdrawAddress(<span class="hljs-string">'8RgwiWmgiYKQlUHWGaTW'</span>, <span class="hljs-string">'TRTLv32bGBP2cfM3SdijU4TTYnCPoR33g5eTas6n9HamBvu8ozc9BWHZza5j7cmBFSgh4dmmGRongfoEEzcvuAEF8dLxixsS7he'</span>);
+
+<span class="hljs-keyword">if</span> (address) {
+ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`user withdraw address successfully set to: <span class="hljs-subst">${address}</span>`</span>);
+}</code></pre>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>userId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The id of the user.</p>
+									</div>
 								</li>
 								<li>
 									<h5>address: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The address that withdrawals will be sent to for this user.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="_serviceerror_.serviceerror.html" class="tsd-signature-type">ServiceError</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Returns the newly set withdraw address or an error.</p>
 						</li>
 					</ul>
 				</section>
@@ -273,22 +340,44 @@ TrtlApp.initialize(<span class="hljs-string">'YOUR_APP_ID'</span>, <span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/1081034/lib/TrtlApp.ts#L112">TrtlApp.ts:112</a></li>
+									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/c74311f/lib/TrtlApp.ts#L180">TrtlApp.ts:180</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Transfer funds from one user to another.</p>
+								</div>
+								<p>Example:</p>
+								<pre><code class="language-ts">
+<span class="hljs-keyword">const</span> [transferId, error] = TrtlApp.userTransfer(<span class="hljs-string">'8RgwiWmgiYKQlUHWGaTW'</span>, <span class="hljs-string">'EWshpvxky57RrAeBCf8Z'</span>, <span class="hljs-number">42</span>);
+
+<span class="hljs-keyword">if</span> (transferId) {
+ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`user transfer succeed, transfer id: <span class="hljs-subst">${transferId}</span>`</span>);
+}</code></pre>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>senderId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The id of the user sending the funds.</p>
+									</div>
 								</li>
 								<li>
 									<h5>receiverId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The receiving user&#39;s id.</p>
+									</div>
 								</li>
 								<li>
 									<h5>amount: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The amount to transfer in atomic units.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="_serviceerror_.serviceerror.html" class="tsd-signature-type">ServiceError</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Returns the transfer id if the transfer succeeded or an error.</p>
 						</li>
 					</ul>
 				</section>
@@ -302,19 +391,38 @@ TrtlApp.initialize(<span class="hljs-string">'YOUR_APP_ID'</span>, <span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/1081034/lib/TrtlApp.ts#L146">TrtlApp.ts:146</a></li>
+									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/c74311f/lib/TrtlApp.ts#L246">TrtlApp.ts:246</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Withdraws the specified amount to the user&#39;s withdraw address.</p>
+								</div>
+								<p>Example:</p>
+								<pre><code class="language-ts">
+<span class="hljs-keyword">const</span> [withdrawalId, error] = TrtlApp.withdraw(<span class="hljs-string">'8RgwiWmgiYKQlUHWGaTW'</span>, <span class="hljs-number">21</span>);
+
+<span class="hljs-keyword">if</span> (withdrawalId) {
+ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Withdrawal request created successfully and is beeing processed, requestId: <span class="hljs-subst">${withdrawalId}</span>`</span>);
+}</code></pre>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>userId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The id of the user withdrawing funds.</p>
+									</div>
 								</li>
 								<li>
 									<h5>amount: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The amount to withdraw in atomic units.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="_serviceerror_.serviceerror.html" class="tsd-signature-type">ServiceError</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Returns the withdraw request id or an error.</p>
 						</li>
 					</ul>
 				</section>
