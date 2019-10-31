@@ -1,4 +1,4 @@
-# turtle-apps-node
+# trtl-apps
 a node-js package for interacting with turtle apps
 
 ## Quickstart
