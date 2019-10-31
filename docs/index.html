@@ -68,11 +68,19 @@
 					<h1>trtl-apps</h1>
 				</a>
 				<p>a node-js package for interacting with turtle apps.</p>
-				<p><a href="https://zoidbergza.github.io/turtle-apps-node/modules/_trtlapp_.html">API Documentation can be found at: </a></p>
+				<p><a href="https://zoidbergza.github.io/turtle-apps-node/modules/_trtlapp_.html">API Documentation can be found here</a></p>
 				<a href="#quickstart" id="quickstart" style="color: inherit; text-decoration: none;">
 					<h2>Quickstart</h2>
 				</a>
-				<p>TODO...</p>
+				<p>Install the package</p>
+				<p><code>npm install trtl-apps</code></p>
+				<p>Initialize your app</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { TrtlApp } <span class="hljs-keyword">from</span> <span class="hljs-string">'trtl-apps'</span>;
+
+TrtlApp.initialize(<span class="hljs-string">'YOUR_APP_ID'</span>, <span class="hljs-string">'YOUR_APP_SECRET'</span>);</code></pre>
+				<p>Create users</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">const</span> [bobId, error] = <span class="hljs-keyword">await</span> TrtlApp.createUser();
+<span class="hljs-keyword">const</span> [aliceId, error] = <span class="hljs-keyword">await</span> TrtlApp.createUser();</code></pre>
 				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
 					<h2>Contributing</h2>
 				</a>

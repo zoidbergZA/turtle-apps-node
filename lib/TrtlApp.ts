@@ -35,13 +35,13 @@ export class TrtlApp {
      *
      * ```ts
      *
-     * const [userId, error] = TrtlApp.createUser();
+     * const [userId, error] = await TrtlApp.createUser();
      *
      * if (userId) {
      *  console.log(`New user created with id: ${userId}`);
      * }
      * ```
-     * @returns {[string | undefined, undefined | ServiceError]} Returns the userId of the newly created user or an error.
+     * @returns {Promise<[string | undefined, undefined | ServiceError]>} Returns the userId of the newly created user or an error.
      */
     public static async createUser(): Promise<[string | undefined, undefined | ServiceError]> {
         if (!this.initialized) {
@@ -65,14 +65,14 @@ export class TrtlApp {
      *
      * ```ts
      *
-     * const [user, error] = TrtlApp.getUser('8RgwiWmgiYKQlUHWGaTW');
+     * const [user, error] = await TrtlApp.getUser('8RgwiWmgiYKQlUHWGaTW');
      *
      * if (user) {
      *  console.log(`User with id: ${userId} has balance: ${user.balanceUnlocked}`);
      * }
      * ```
      * @param {string} userId The ID of the user to retrieve.
-     * @returns {[AppUser | undefined, undefined | ServiceError]} Returns the user object or an error.
+     * @returns {Promise<[AppUser | undefined, undefined | ServiceError]>} Returns the user object or an error.
      */
     public static async getUser(userId: string): Promise<[AppUser | undefined, undefined | ServiceError]> {
         if (!this.initialized) {
@@ -96,7 +96,7 @@ export class TrtlApp {
      *
      * ```ts
      *
-     * const [depositRequest, error] = TrtlApp.depositRequest('8RgwiWmgiYKQlUHWGaTW', 42);
+     * const [depositRequest, error] = await TrtlApp.depositRequest('8RgwiWmgiYKQlUHWGaTW', 42);
      *
      * if (depositRequest) {
      *  console.log(`new deposit request created. qr code: ${depositRequest.qrCode}`);
@@ -104,7 +104,7 @@ export class TrtlApp {
      * ```
      * @param {string} userId The id of the user to create the deposit request for.
      * @param {number} amount The amount the user should deposit in atomic units.
-     * @returns {[AppDepositRequest | undefined, undefined | ServiceError]} Returns the newly created deposit request object or an error.
+     * @returns {Promise<[AppDepositRequest | undefined, undefined | ServiceError]>} Returns the newly created deposit request object or an error.
      */
     public static async depositRequest(
         userId: string,
@@ -131,7 +131,7 @@ export class TrtlApp {
      *
      * ```ts
      *
-     * const [address, error] = TrtlApp.setWithdrawAddress('8RgwiWmgiYKQlUHWGaTW', 'TRTLv32bGBP2cfM3SdijU4TTYnCPoR33g5eTas6n9HamBvu8ozc9BWHZza5j7cmBFSgh4dmmGRongfoEEzcvuAEF8dLxixsS7he');
+     * const [address, error] = await TrtlApp.setWithdrawAddress('8RgwiWmgiYKQlUHWGaTW', 'TRTLv32bGBP2cfM3SdijU4TTYnCPoR33g5eTas6n9HamBvu8ozc9BWHZza5j7cmBFSgh4dmmGRongfoEEzcvuAEF8dLxixsS7he');
      *
      * if (address) {
      *  console.log(`user withdraw address successfully set to: ${address}`);
@@ -139,7 +139,7 @@ export class TrtlApp {
      * ```
      * @param {string} userId The id of the user.
      * @param {string} address The address that withdrawals will be sent to for this user.
-     * @returns {[string | undefined, undefined | ServiceError]} Returns the newly set withdraw address or an error.
+     * @returns {Promise<[string | undefined, undefined | ServiceError]>} Returns the newly set withdraw address or an error.
      */
     public static async setWithdrawAddress(
         userId: string,
@@ -166,7 +166,7 @@ export class TrtlApp {
      *
      * ```ts
      *
-     * const [transferId, error] = TrtlApp.userTransfer('8RgwiWmgiYKQlUHWGaTW', 'EWshpvxky57RrAeBCf8Z', 42);
+     * const [transferId, error] = await TrtlApp.userTransfer('8RgwiWmgiYKQlUHWGaTW', 'EWshpvxky57RrAeBCf8Z', 42);
      *
      * if (transferId) {
      *  console.log(`user transfer succeed, transfer id: ${transferId}`);
@@ -175,7 +175,7 @@ export class TrtlApp {
      * @param {string} senderId The id of the user sending the funds.
      * @param {string} receiverId The receiving user's id.
      * @param {number} amount The amount to transfer in atomic units.
-     * @returns {[string | undefined, undefined | ServiceError]} Returns the transfer id if the transfer succeeded or an error.
+     * @returns {Promise<[string | undefined, undefined | ServiceError]>} Returns the transfer id if the transfer succeeded or an error.
      */
     public static async userTransfer(
         senderId: string,
@@ -203,13 +203,13 @@ export class TrtlApp {
      *
      * ```ts
      *
-     * const [fee, error] = TrtlApp.getFee();
+     * const [fee, error] = await TrtlApp.getFee();
      *
      * if (fee) {
      *  console.log(`The current node fee for user withdrawals is: ${fee}`);
      * }
      * ```
-     * @returns {[number | undefined, undefined | ServiceError]} Returns the withdraw fee in atomic units or an error.
+     * @returns {Promise<[number | undefined, undefined | ServiceError]>} Returns the withdraw fee in atomic units or an error.
      */
     public static async getFee(): Promise<[number | undefined, undefined | ServiceError]> {
         if (!this.initialized) {
@@ -233,7 +233,7 @@ export class TrtlApp {
      *
      * ```ts
      *
-     * const [withdrawalId, error] = TrtlApp.withdraw('8RgwiWmgiYKQlUHWGaTW', 21);
+     * const [withdrawalId, error] = await TrtlApp.withdraw('8RgwiWmgiYKQlUHWGaTW', 21);
      *
      * if (withdrawalId) {
      *  console.log(`Withdrawal request created successfully and is beeing processed, requestId: ${withdrawalId}`);
@@ -241,7 +241,7 @@ export class TrtlApp {
      * ```
      * @param {string} userId The id of the user withdrawing funds.
      * @param {number} amount The amount to withdraw in atomic units.
-     * @returns {[string | undefined, undefined | ServiceError]} Returns the withdraw request id or an error.
+     * @returns {Promise<[string | undefined, undefined | ServiceError]>} Returns the withdraw request id or an error.
      */
     public static async withdraw(
         userId: string,
