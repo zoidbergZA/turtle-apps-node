@@ -28,7 +28,7 @@ export class TrtlApp {
         this.initialized = true;
     }
 
-    public static async createUser(): Promise<[AppUser | undefined, undefined | ServiceError]> {
+    public static async createUser(): Promise<[string | undefined, undefined | ServiceError]> {
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
         }
@@ -37,7 +37,22 @@ export class TrtlApp {
 
         try {
             const response = await axios.get(endpoint);
-            return [response.data as AppUser, undefined];
+            return [(response.data as AppUser).userId, undefined];
+        } catch (error) {
+            return [undefined, error.response.data];
+        }
+    }
+
+    public static async getUser(userId: string): Promise<[AppUser | undefined, undefined | ServiceError]> {
+        if (!this.initialized) {
+            return [undefined, new ServiceError('service/not-initialized')];
+        }
+
+        const endpoint = `${this.apiBase}getuser?appId=${this.appId}&userId=${userId}`;
+
+        try {
+            const response = await axios.get(endpoint);
+            return [(response.data as AppUser), undefined];
         } catch (error) {
             return [undefined, error.response.data];
         }
