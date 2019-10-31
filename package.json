@@ -1,5 +1,5 @@
 {
-  "name": "turtle-apps-node",
+  "name": "trtl-apps",
   "version": "0.0.1",
   "description": "a node-js package for interacting with turtle apps",
   "main": "dist/lib/index.js",
