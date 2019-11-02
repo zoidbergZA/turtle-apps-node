@@ -169,7 +169,7 @@ export class TrtlApp {
      * const [transferId, error] = await TrtlApp.userTransfer('8RgwiWmgiYKQlUHWGaTW', 'EWshpvxky57RrAeBCf8Z', 42);
      *
      * if (transferId) {
-     *  console.log(`user transfer succeed, transfer id: ${transferId}`);
+     *  console.log(`user transfer succeeded, transfer id: ${transferId}`);
      * }
      * ```
      * @param {string} senderId The id of the user sending the funds.

@@ -1,7 +1,7 @@
 # trtl-apps
 a node-js package for interacting with turtle apps.
 
-[API Documentation can be found here](https://zoidbergza.github.io/turtle-apps-node/modules/_trtlapp_.html)
+[API Documentation can be found here](https://zoidbergza.github.io/turtle-apps-node/classes/_trtlapp_.trtlapp.html)
 
 ## Quickstart
 
@@ -42,7 +42,7 @@ Transfer from one user to another
 const [transferId, error] = await TrtlApp.userTransfer(aliceId, bobId, 120);
 
 if (transferId) {
-    console.log(`user transfer succeed, transfer id: ${transferId}`);
+    console.log(`user transfer succeeded, transfer id: ${transferId}`);
 }
 ```
 
