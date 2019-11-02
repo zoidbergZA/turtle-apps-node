@@ -236,7 +236,7 @@ export class TrtlApp {
      * const [withdrawal, error] = await TrtlApp.withdraw('8RgwiWmgiYKQlUHWGaTW', 21);
      *
      * if (withdrawal) {
-     *  console.log(`Withdrawal request created successfully and is beeing processed, paymentId: ${paymentId}`);
+     *  console.log(`Withdrawal request created successfully and is beeing processed, paymentId: ${withdrawal.paymentId}`);
      * }
      * ```
      * @param {string} userId The id of the user withdrawing funds.
