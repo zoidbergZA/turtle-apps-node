@@ -26,6 +26,48 @@ const [aliceId, error]  = await TrtlApp.createUser();
 const [bobId, error]    = await TrtlApp.createUser();
 ```
 
+Request a deposit from a user
+
+```ts
+const [depositRequest, error] = await TrtlApp.depositRequest(aliceId, 420);
+
+if (depositRequest) {
+    console.log(`new deposit request created. qr code: ${depositRequest.qrCode}`);
+}
+```
+
+Transfer from one user to another
+
+```ts
+const [transferId, error] = await TrtlApp.userTransfer(aliceId, bobId, 120);
+
+if (transferId) {
+    console.log(`user transfer succeed, transfer id: ${transferId}`);
+}
+```
+
+Set a user's withdraw address
+
+```ts
+const [address, error] = await TrtlApp.setWithdrawAddress(
+    bobId,
+    'TRTLv32bGBP2cfM3SdijU4TTYnCPoR33g5eTas6n9HamBvu8ozc9BWHZza5j7cmBFSgh4dmmGRongfoEEzcvuAEF8dLxixsS7he');
+
+if (address) {
+    console.log(`user withdraw address successfully set to: ${address}`);
+}
+```
+
+User withdraw
+
+```ts
+const [withdrawal, error] = await TrtlApp.withdraw(bobId, 42);
+
+if (withdrawal) {
+    console.log(`Withdrawal request created successfully and is beeing processed, paymentId: ${paymentId}`);
+}
+```
+
 ## Contributing
 
 ### Generate documentation website
