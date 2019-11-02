@@ -39,3 +39,22 @@ export interface UserTransfer {
   amount: number;
   timestamp: number;
 }
+
+export type WithdrawStatus = 'confirming' | 'completed';
+
+export interface WithdrawRequest
+{
+  requestId: string;
+  paymentId: string,
+  appId: string;
+  userId: string;
+  amount: number;
+  fee: number;
+  timestamp: number;
+  lastUpdate: number;
+  status: WithdrawStatus;
+  requestedAtBlock: number;
+  blockHeight: number;
+  failed: boolean;
+  txHash?: string;
+}

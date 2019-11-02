@@ -5,9 +5,11 @@ a node-js package for interacting with turtle apps.
 
 ## Quickstart
 
+Create an app using the [TRTL apps console](https://trtlapps.io)
+
 Install the package
 
-`npm install trtl-apps`
+`npm install trtl-apps --save`
 
 Initialize your app
 
@@ -20,8 +22,8 @@ TrtlApp.initialize('YOUR_APP_ID', 'YOUR_APP_SECRET');
 Create users
 
 ```ts
-const [bobId, error] = await TrtlApp.createUser();
-const [aliceId, error] = await TrtlApp.createUser();
+const [aliceId, error]  = await TrtlApp.createUser();
+const [bobId, error]    = await TrtlApp.createUser();
 ```
 
 ## Contributing

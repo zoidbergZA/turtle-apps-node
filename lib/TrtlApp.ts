@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AppUser, AppDepositRequest, UserTransfer } from './Types';
+import { AppUser, AppDepositRequest, WithdrawRequest } from './Types';
 import { ServiceError } from './ServiceError';
 
 export class TrtlApp {
@@ -233,19 +233,19 @@ export class TrtlApp {
      *
      * ```ts
      *
-     * const [withdrawalId, error] = await TrtlApp.withdraw('8RgwiWmgiYKQlUHWGaTW', 21);
+     * const [withdrawal, error] = await TrtlApp.withdraw('8RgwiWmgiYKQlUHWGaTW', 21);
      *
-     * if (withdrawalId) {
-     *  console.log(`Withdrawal request created successfully and is beeing processed, requestId: ${withdrawalId}`);
+     * if (withdrawal) {
+     *  console.log(`Withdrawal request created successfully and is beeing processed, paymentId: ${paymentId}`);
      * }
      * ```
      * @param {string} userId The id of the user withdrawing funds.
      * @param {number} amount The amount to withdraw in atomic units.
-     * @returns {Promise<[string | undefined, undefined | ServiceError]>} Returns the withdraw request id or an error.
+     * @returns {Promise<[WithdrawRequest | undefined, undefined | ServiceError]>} Returns the withdraw request object or an error.
      */
     public static async withdraw(
         userId: string,
-        amount: number): Promise<[string | undefined, undefined | ServiceError]> {
+        amount: number): Promise<[WithdrawRequest | undefined, undefined | ServiceError]> {
 
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
@@ -255,7 +255,7 @@ export class TrtlApp {
 
         try {
             const response = await axios.get(endpoint);
-            return [response.data.requestId as string, undefined];
+            return [response.data as WithdrawRequest, undefined];
         } catch (error) {
             return [undefined, error.response.data];
         }
