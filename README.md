@@ -64,7 +64,7 @@ User withdraw
 const [withdrawal, error] = await TrtlApp.withdraw(bobId, 42);
 
 if (withdrawal) {
-    console.log(`Withdrawal request created successfully and is beeing processed, paymentId: ${paymentId}`);
+    console.log(`Withdrawal request created successfully and is beeing processed, paymentId: ${withdrawal.paymentId}`);
 }
 ```
 
