@@ -72,15 +72,42 @@
 				<a href="#quickstart" id="quickstart" style="color: inherit; text-decoration: none;">
 					<h2>Quickstart</h2>
 				</a>
+				<p>Create an app using the <a href="https://trtlapps.io">TRTL apps console</a></p>
 				<p>Install the package</p>
-				<p><code>npm install trtl-apps</code></p>
+				<p><code>npm install trtl-apps --save</code></p>
 				<p>Initialize your app</p>
 				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { TrtlApp } <span class="hljs-keyword">from</span> <span class="hljs-string">'trtl-apps'</span>;
 
 TrtlApp.initialize(<span class="hljs-string">'YOUR_APP_ID'</span>, <span class="hljs-string">'YOUR_APP_SECRET'</span>);</code></pre>
 				<p>Create users</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">const</span> [bobId, error] = <span class="hljs-keyword">await</span> TrtlApp.createUser();
-<span class="hljs-keyword">const</span> [aliceId, error] = <span class="hljs-keyword">await</span> TrtlApp.createUser();</code></pre>
+				<pre><code class="language-ts"><span class="hljs-keyword">const</span> [aliceId, error]  = <span class="hljs-keyword">await</span> TrtlApp.createUser();
+<span class="hljs-keyword">const</span> [bobId, error]    = <span class="hljs-keyword">await</span> TrtlApp.createUser();</code></pre>
+				<p>Request a deposit from a user</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">const</span> [depositRequest, error] = <span class="hljs-keyword">await</span> TrtlApp.depositRequest(aliceId, <span class="hljs-number">420</span>);
+
+<span class="hljs-keyword">if</span> (depositRequest) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`new deposit request created. qr code: <span class="hljs-subst">${depositRequest.qrCode}</span>`</span>);
+}</code></pre>
+				<p>Transfer from one user to another</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">const</span> [transferId, error] = <span class="hljs-keyword">await</span> TrtlApp.userTransfer(aliceId, bobId, <span class="hljs-number">120</span>);
+
+<span class="hljs-keyword">if</span> (transferId) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`user transfer succeed, transfer id: <span class="hljs-subst">${transferId}</span>`</span>);
+}</code></pre>
+				<p>Set a user&#39;s withdraw address</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">const</span> [address, error] = <span class="hljs-keyword">await</span> TrtlApp.setWithdrawAddress(
+    bobId,
+    <span class="hljs-string">'TRTLv32bGBP2cfM3SdijU4TTYnCPoR33g5eTas6n9HamBvu8ozc9BWHZza5j7cmBFSgh4dmmGRongfoEEzcvuAEF8dLxixsS7he'</span>);
+
+<span class="hljs-keyword">if</span> (address) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`user withdraw address successfully set to: <span class="hljs-subst">${address}</span>`</span>);
+}</code></pre>
+				<p>User withdraw</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">const</span> [withdrawal, error] = <span class="hljs-keyword">await</span> TrtlApp.withdraw(bobId, <span class="hljs-number">42</span>);
+
+<span class="hljs-keyword">if</span> (withdrawal) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Withdrawal request created successfully and is beeing processed, paymentId: <span class="hljs-subst">${paymentId}</span>`</span>);
+}</code></pre>
 				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
 					<h2>Contributing</h2>
 				</a>
