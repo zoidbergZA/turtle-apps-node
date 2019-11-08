@@ -83,7 +83,7 @@ TrtlApp.initialize(<span class="hljs-string">'YOUR_APP_ID'</span>, <span class="
 				<pre><code class="language-ts"><span class="hljs-keyword">const</span> [aliceId, error]  = <span class="hljs-keyword">await</span> TrtlApp.createUser();
 <span class="hljs-keyword">const</span> [bobId, error]    = <span class="hljs-keyword">await</span> TrtlApp.createUser();</code></pre>
 				<p>Request a deposit from a user</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">const</span> [depositRequest, error] = <span class="hljs-keyword">await</span> TrtlApp.depositRequest(aliceId, <span class="hljs-number">420</span>);
+				<pre><code class="language-ts"><span class="hljs-keyword">const</span> [depositRequest, error] = <span class="hljs-keyword">await</span> TrtlApp.requestDeposit(aliceId, <span class="hljs-number">420</span>);
 
 <span class="hljs-keyword">if</span> (depositRequest) {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`new deposit request created. qr code: <span class="hljs-subst">${depositRequest.qrCode}</span>`</span>);

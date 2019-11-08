@@ -29,7 +29,7 @@ const [bobId, error]    = await TrtlApp.createUser();
 Request a deposit from a user
 
 ```ts
-const [depositRequest, error] = await TrtlApp.depositRequest(aliceId, 420);
+const [depositRequest, error] = await TrtlApp.requestDeposit(aliceId, 420);
 
 if (depositRequest) {
     console.log(`new deposit request created. qr code: ${depositRequest.qrCode}`);
