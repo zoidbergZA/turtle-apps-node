@@ -96,7 +96,7 @@ export class TrtlApp {
      *
      * ```ts
      *
-     * const [depositRequest, error] = await TrtlApp.depositRequest('8RgwiWmgiYKQlUHWGaTW', 42);
+     * const [depositRequest, error] = await TrtlApp.requestDeposit('8RgwiWmgiYKQlUHWGaTW', 42);
      *
      * if (depositRequest) {
      *  console.log(`new deposit request created. qr code: ${depositRequest.qrCode}`);
@@ -106,7 +106,7 @@ export class TrtlApp {
      * @param {number} amount The amount the user should deposit in atomic units.
      * @returns {Promise<[AppDepositRequest | undefined, undefined | ServiceError]>} Returns the newly created deposit request object or an error.
      */
-    public static async depositRequest(
+    public static async requestDeposit(
         userId: string,
         amount: number): Promise<[AppDepositRequest | undefined, undefined | ServiceError]> {
 
@@ -114,7 +114,7 @@ export class TrtlApp {
             return [undefined, new ServiceError('service/not-initialized')];
         }
 
-        const endpoint = `${this.apiBase}depositrequest?appId=${this.appId}&userId=${userId}&amount=${amount}`;
+        const endpoint = `${this.apiBase}requestdeposit?appId=${this.appId}&userId=${userId}&amount=${amount}`;
 
         try {
             const response = await axios.get(endpoint);

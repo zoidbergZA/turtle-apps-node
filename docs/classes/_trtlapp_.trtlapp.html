@@ -85,10 +85,10 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_trtlapp_.trtlapp.html#createuser" class="tsd-kind-icon">create<wbr>User</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_trtlapp_.trtlapp.html#depositrequest" class="tsd-kind-icon">deposit<wbr>Request</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_trtlapp_.trtlapp.html#getfee" class="tsd-kind-icon">get<wbr>Fee</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_trtlapp_.trtlapp.html#getuser" class="tsd-kind-icon">get<wbr>User</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_trtlapp_.trtlapp.html#initialize" class="tsd-kind-icon">initialize</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_trtlapp_.trtlapp.html#requestdeposit" class="tsd-kind-icon">request<wbr>Deposit</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_trtlapp_.trtlapp.html#setwithdrawaddress" class="tsd-kind-icon">set<wbr>Withdraw<wbr>Address</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_trtlapp_.trtlapp.html#usertransfer" class="tsd-kind-icon">user<wbr>Transfer</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_trtlapp_.trtlapp.html#withdraw" class="tsd-kind-icon">withdraw</a></li>
@@ -109,7 +109,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/ab90b76/lib/TrtlApp.ts#L46">TrtlApp.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/a9497bc/lib/TrtlApp.ts#L46">TrtlApp.ts:46</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -130,51 +130,6 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="depositrequest" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> deposit<wbr>Request</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">deposit<wbr>Request<span class="tsd-signature-symbol">(</span>userId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, amount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><a href="../interfaces/_types_.appdepositrequest.html" class="tsd-signature-type">AppDepositRequest</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="_serviceerror_.serviceerror.html" class="tsd-signature-type">ServiceError</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/ab90b76/lib/TrtlApp.ts#L109">TrtlApp.ts:109</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Creates a new deposit request for the user.</p>
-								</div>
-								<p>Example:</p>
-								<pre><code class="language-ts">
-<span class="hljs-keyword">const</span> [depositRequest, error] = <span class="hljs-keyword">await</span> TrtlApp.depositRequest(<span class="hljs-string">'8RgwiWmgiYKQlUHWGaTW'</span>, <span class="hljs-number">42</span>);
-
-<span class="hljs-keyword">if</span> (depositRequest) {
- <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`new deposit request created. qr code: <span class="hljs-subst">${depositRequest.qrCode}</span>`</span>);
-}</code></pre>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>userId: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The id of the user to create the deposit request for.</p>
-									</div>
-								</li>
-								<li>
-									<h5>amount: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The amount the user should deposit in atomic units.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><a href="../interfaces/_types_.appdepositrequest.html" class="tsd-signature-type">AppDepositRequest</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="_serviceerror_.serviceerror.html" class="tsd-signature-type">ServiceError</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Returns the newly created deposit request object or an error.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
 					<a name="getfee" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> get<wbr>Fee</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
@@ -184,7 +139,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/ab90b76/lib/TrtlApp.ts#L214">TrtlApp.ts:214</a></li>
+									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/a9497bc/lib/TrtlApp.ts#L214">TrtlApp.ts:214</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -214,7 +169,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/ab90b76/lib/TrtlApp.ts#L77">TrtlApp.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/a9497bc/lib/TrtlApp.ts#L77">TrtlApp.ts:77</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -253,7 +208,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/ab90b76/lib/TrtlApp.ts#L24">TrtlApp.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/a9497bc/lib/TrtlApp.ts#L24">TrtlApp.ts:24</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -286,6 +241,51 @@ TrtlApp.initialize(<span class="hljs-string">'YOUR_APP_ID'</span>, <span class="
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="requestdeposit" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> request<wbr>Deposit</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">request<wbr>Deposit<span class="tsd-signature-symbol">(</span>userId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, amount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><a href="../interfaces/_types_.appdepositrequest.html" class="tsd-signature-type">AppDepositRequest</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="_serviceerror_.serviceerror.html" class="tsd-signature-type">ServiceError</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/a9497bc/lib/TrtlApp.ts#L109">TrtlApp.ts:109</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a new deposit request for the user.</p>
+								</div>
+								<p>Example:</p>
+								<pre><code class="language-ts">
+<span class="hljs-keyword">const</span> [depositRequest, error] = <span class="hljs-keyword">await</span> TrtlApp.requestDeposit(<span class="hljs-string">'8RgwiWmgiYKQlUHWGaTW'</span>, <span class="hljs-number">42</span>);
+
+<span class="hljs-keyword">if</span> (depositRequest) {
+ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`new deposit request created. qr code: <span class="hljs-subst">${depositRequest.qrCode}</span>`</span>);
+}</code></pre>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>userId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The id of the user to create the deposit request for.</p>
+									</div>
+								</li>
+								<li>
+									<h5>amount: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The amount the user should deposit in atomic units.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><a href="../interfaces/_types_.appdepositrequest.html" class="tsd-signature-type">AppDepositRequest</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="_serviceerror_.serviceerror.html" class="tsd-signature-type">ServiceError</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Returns the newly created deposit request object or an error.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
 					<a name="setwithdrawaddress" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> set<wbr>Withdraw<wbr>Address</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
@@ -295,7 +295,7 @@ TrtlApp.initialize(<span class="hljs-string">'YOUR_APP_ID'</span>, <span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/ab90b76/lib/TrtlApp.ts#L144">TrtlApp.ts:144</a></li>
+									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/a9497bc/lib/TrtlApp.ts#L144">TrtlApp.ts:144</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -340,7 +340,7 @@ TrtlApp.initialize(<span class="hljs-string">'YOUR_APP_ID'</span>, <span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/ab90b76/lib/TrtlApp.ts#L180">TrtlApp.ts:180</a></li>
+									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/a9497bc/lib/TrtlApp.ts#L180">TrtlApp.ts:180</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -352,7 +352,7 @@ TrtlApp.initialize(<span class="hljs-string">'YOUR_APP_ID'</span>, <span class="
 <span class="hljs-keyword">const</span> [transferId, error] = <span class="hljs-keyword">await</span> TrtlApp.userTransfer(<span class="hljs-string">'8RgwiWmgiYKQlUHWGaTW'</span>, <span class="hljs-string">'EWshpvxky57RrAeBCf8Z'</span>, <span class="hljs-number">42</span>);
 
 <span class="hljs-keyword">if</span> (transferId) {
- <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`user transfer succeed, transfer id: <span class="hljs-subst">${transferId}</span>`</span>);
+ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`user transfer succeeded, transfer id: <span class="hljs-subst">${transferId}</span>`</span>);
 }</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -391,7 +391,7 @@ TrtlApp.initialize(<span class="hljs-string">'YOUR_APP_ID'</span>, <span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/ab90b76/lib/TrtlApp.ts#L246">TrtlApp.ts:246</a></li>
+									<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/a9497bc/lib/TrtlApp.ts#L246">TrtlApp.ts:246</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -403,7 +403,7 @@ TrtlApp.initialize(<span class="hljs-string">'YOUR_APP_ID'</span>, <span class="
 <span class="hljs-keyword">const</span> [withdrawal, error] = <span class="hljs-keyword">await</span> TrtlApp.withdraw(<span class="hljs-string">'8RgwiWmgiYKQlUHWGaTW'</span>, <span class="hljs-number">21</span>);
 
 <span class="hljs-keyword">if</span> (withdrawal) {
- <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Withdrawal request created successfully and is beeing processed, paymentId: <span class="hljs-subst">${paymentId}</span>`</span>);
+ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Withdrawal request created successfully and is beeing processed, paymentId: <span class="hljs-subst">${withdrawal.paymentId}</span>`</span>);
 }</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -456,9 +456,6 @@ TrtlApp.initialize(<span class="hljs-string">'YOUR_APP_ID'</span>, <span class="
 								<a href="_trtlapp_.trtlapp.html#createuser" class="tsd-kind-icon">create<wbr>User</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="_trtlapp_.trtlapp.html#depositrequest" class="tsd-kind-icon">deposit<wbr>Request</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_trtlapp_.trtlapp.html#getfee" class="tsd-kind-icon">get<wbr>Fee</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
@@ -466,6 +463,9 @@ TrtlApp.initialize(<span class="hljs-string">'YOUR_APP_ID'</span>, <span class="
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_trtlapp_.trtlapp.html#initialize" class="tsd-kind-icon">initialize</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="_trtlapp_.trtlapp.html#requestdeposit" class="tsd-kind-icon">request<wbr>Deposit</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_trtlapp_.trtlapp.html#setwithdrawaddress" class="tsd-kind-icon">set<wbr>Withdraw<wbr>Address</a>

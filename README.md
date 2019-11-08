@@ -70,6 +70,10 @@ if (withdrawal) {
 
 ## Contributing
 
+Compile the javascript
+
+`tsc`
+
 ### Generate documentation website
 
 The copyfiles package must be installed globally
