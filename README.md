@@ -68,18 +68,18 @@ if (withdrawal) {
 }
 ```
 
-## Contributing
+## Documentation
 
 Compile the javascript
 
 `tsc`
 
-### Generate documentation website
-
-The copyfiles package must be installed globally
+Generate documentation website. The copyfiles package must be installed globally
 
 `npm i copyfiles -g`
 
-Use the following command to generate the documentation site.
+Use the following command to generate the static documentation site.
 
 `npm run docs`
+
+Documentation is automatically hosted using github pages with each commit to the master branch
