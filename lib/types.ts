@@ -29,6 +29,7 @@ export interface AppDepositRequest {
   expired: boolean;
   qrCode: string;
   lastUpdate: number;
+  callbackUrl?: string;
 }
 
 export interface UserTransfer {
@@ -57,4 +58,5 @@ export interface WithdrawRequest
   blockHeight: number;
   failed: boolean;
   txHash?: string;
+  callbackUrl?: string;
 }

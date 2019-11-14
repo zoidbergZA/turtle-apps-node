@@ -1,7 +1,7 @@
 # trtl-apps
 a node-js package for interacting with turtle apps.
 
-[API Documentation can be found here](https://zoidbergza.github.io/turtle-apps-node/classes/_trtlapp_.trtlapp.html)
+[Full API Documentation can be found here](https://zoidbergza.github.io/turtle-apps-node/classes/_trtlapp_.trtlapp.html)
 
 ## Quickstart
 

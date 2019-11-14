@@ -104,11 +104,13 @@ export class TrtlApp {
      * ```
      * @param {string} userId The id of the user to create the deposit request for.
      * @param {number} amount The amount the user should deposit in atomic units.
+     * @param {string} callbackUrl Optional callback URL to send status updates for this deposit request.
      * @returns {Promise<[AppDepositRequest | undefined, undefined | ServiceError]>} Returns the newly created deposit request object or an error.
      */
     public static async requestDeposit(
         userId: string,
-        amount: number): Promise<[AppDepositRequest | undefined, undefined | ServiceError]> {
+        amount: number,
+        callbackUrl?: string): Promise<[AppDepositRequest | undefined, undefined | ServiceError]> {
 
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
@@ -241,11 +243,13 @@ export class TrtlApp {
      * ```
      * @param {string} userId The id of the user withdrawing funds.
      * @param {number} amount The amount to withdraw in atomic units.
+     * @param {string} callbackUrl Optional callback URL to send status updates for this withdraw request.
      * @returns {Promise<[WithdrawRequest | undefined, undefined | ServiceError]>} Returns the withdraw request object or an error.
      */
     public static async withdraw(
         userId: string,
-        amount: number): Promise<[WithdrawRequest | undefined, undefined | ServiceError]> {
+        amount: number,
+        callbackUrl?: string): Promise<[WithdrawRequest | undefined, undefined | ServiceError]> {
 
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
