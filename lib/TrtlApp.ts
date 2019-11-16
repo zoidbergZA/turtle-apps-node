@@ -3,7 +3,7 @@ import { AppUser, AppDepositRequest, WithdrawRequest } from './Types';
 import { ServiceError } from './ServiceError';
 
 export class TrtlApp {
-    private static readonly apiBase = 'https://trtlapps.io/api/';
+    private static readonly apiBase = 'https://trtlapps.io/api';
     private static initialized: boolean = false;
     private static appId: string | undefined;
 
@@ -48,10 +48,10 @@ export class TrtlApp {
             return [undefined, new ServiceError('service/not-initialized')];
         }
 
-        const endpoint = `${this.apiBase}createuser?appId=${this.appId}`;
+        const endpoint = `${this.apiBase}/${this.appId}/users`;
 
         try {
-            const response = await axios.get(endpoint);
+            const response = await axios.post(endpoint);
             return [(response.data as AppUser).userId, undefined];
         } catch (error) {
             return [undefined, error.response.data];
@@ -79,7 +79,7 @@ export class TrtlApp {
             return [undefined, new ServiceError('service/not-initialized')];
         }
 
-        const endpoint = `${this.apiBase}getuser?appId=${this.appId}&userId=${userId}`;
+        const endpoint = `${this.apiBase}/${this.appId}/users/${userId}`;
 
         try {
             const response = await axios.get(endpoint);
@@ -116,10 +116,18 @@ export class TrtlApp {
             return [undefined, new ServiceError('service/not-initialized')];
         }
 
-        const endpoint = `${this.apiBase}requestdeposit?appId=${this.appId}&userId=${userId}&amount=${amount}`;
+        const endpoint = `${this.apiBase}/${this.appId}/deposits`;
+        const body: any = {
+            userId: userId,
+            amount: amount
+        }
+
+        if (callbackUrl) {
+            body.callbackUrl = callbackUrl;
+        }
 
         try {
-            const response = await axios.get(endpoint);
+            const response = await axios.post(endpoint, body);
             return [response.data as AppDepositRequest, undefined];
         } catch (error) {
             return [undefined, error.response.data];
@@ -151,10 +159,12 @@ export class TrtlApp {
             return [undefined, new ServiceError('service/not-initialized')];
         }
 
-        const endpoint = `${this.apiBase}setwithdrawaddress?appId=${this.appId}&userId=${userId}&address=${address}`;
+        const endpoint = `${this.apiBase}/${this.appId}/users/${userId}/withdrawaddress`;
 
         try {
-            const response = await axios.get(endpoint);
+            const response = await axios.put(endpoint, {
+                address: address
+            });
             return [response.data.withdrawAddress as string, undefined];
         } catch (error) {
             return [undefined, error.response.data];
@@ -188,10 +198,14 @@ export class TrtlApp {
             return [undefined, new ServiceError('service/not-initialized')];
         }
 
-        const endpoint = `${this.apiBase}usertransfer?appId=${this.appId}&senderId=${senderId}&receiverId=${receiverId}&amount=${amount}`;
+        const endpoint = `${this.apiBase}/${this.appId}/transfers`;
 
         try {
-            const response = await axios.get(endpoint);
+            const response = await axios.post(endpoint, {
+                senderId: senderId,
+                receiverId: receiverId,
+                amount: amount
+            });
             return [response.data.transferId as string, undefined];
         } catch (error) {
             return [undefined, error.response.data];
@@ -218,7 +232,7 @@ export class TrtlApp {
             return [undefined, new ServiceError('service/not-initialized')];
         }
 
-        const endpoint = `${this.apiBase}getfee?appId=${this.appId}`;
+        const endpoint = `${this.apiBase}/service/nodefee`;
 
         try {
             const response = await axios.get(endpoint);
@@ -255,10 +269,18 @@ export class TrtlApp {
             return [undefined, new ServiceError('service/not-initialized')];
         }
 
-        const endpoint = `${this.apiBase}withdraw?appId=${this.appId}&userId=${userId}&amount=${amount}`;
+        const endpoint = `${this.apiBase}/${this.appId}/withdrawals`;
+        const body: any = {
+            userId: userId,
+            amount: amount
+        }
+
+        if (callbackUrl) {
+            body.callbackUrl = callbackUrl
+        }
 
         try {
-            const response = await axios.get(endpoint);
+            const response = await axios.post(endpoint, body);
             return [response.data as WithdrawRequest, undefined];
         } catch (error) {
             return [undefined, error.response.data];
