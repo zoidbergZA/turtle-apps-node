@@ -1,3 +1,7 @@
+export interface InitOptions {
+  apiBase?: string
+}
+
 export interface AppUser {
     userId: string;
     withdrawAddress?: string;

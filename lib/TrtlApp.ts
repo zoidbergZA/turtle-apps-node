@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { AppUser, AppDepositRequest, WithdrawRequest } from './Types';
+import { AppUser, AppDepositRequest, WithdrawRequest, InitOptions } from './Types';
 import { ServiceError } from './ServiceError';
 
 export class TrtlApp {
-    private static readonly apiBase = 'https://trtlapps.io/api';
+    private static apiBase = 'https://trtlapps.io/api';
     private static initialized: boolean = false;
     private static appId: string | undefined;
 
@@ -21,9 +21,15 @@ export class TrtlApp {
      * @param {string} appId The ID of the app.
      * @param {string} appSecret The secret key of the app.
      */
-    public static initialize(appId: string, appSecret: string): void {
+    public static initialize(appId: string, appSecret: string, options?: InitOptions): void {
         this.appId = appId;
         axios.defaults.headers.common = {'Authorization': `Bearer ${appSecret}`}
+
+        if (options) {
+            if (options.apiBase) {
+                this.apiBase = options.apiBase;
+            }
+        }
 
         this.initialized = true;
     }
