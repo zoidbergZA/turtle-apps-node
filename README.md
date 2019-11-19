@@ -68,7 +68,9 @@ if (withdrawal) {
 }
 ```
 
-## Documentation
+## Contributing
+
+### Documentation
 
 Compile the javascript
 

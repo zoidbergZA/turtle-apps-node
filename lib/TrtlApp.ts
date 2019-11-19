@@ -20,6 +20,7 @@ export class TrtlApp {
      * ```
      * @param {string} appId The ID of the app.
      * @param {string} appSecret The secret key of the app.
+     * @param {string} options Optional initialization parameters.
      */
     public static initialize(appId: string, appSecret: string, options?: InitOptions): void {
         this.appId = appId;
