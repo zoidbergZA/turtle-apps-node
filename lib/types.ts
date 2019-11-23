@@ -55,6 +55,7 @@ export interface WithdrawRequest
   userId: string;
   amount: number;
   fee: number;
+  sendAddress: string;
   timestamp: number;
   lastUpdate: number;
   status: WithdrawStatus;

@@ -250,7 +250,7 @@ export class TrtlApp {
     }
 
     /**
-     * Withdraws the specified amount to the user's withdraw address.
+     * Withdraws the specified amount from user's balance.
      *
      * Example:
      *
@@ -264,12 +264,14 @@ export class TrtlApp {
      * ```
      * @param {string} userId The id of the user withdrawing funds.
      * @param {number} amount The amount to withdraw in atomic units.
+     * @param {string} sendAddress Optional address where the funds will be sent, if none is provided the user's withdraw address will be used.
      * @param {string} callbackUrl Optional callback URL to send status updates for this withdraw request.
      * @returns {Promise<[WithdrawRequest | undefined, undefined | ServiceError]>} Returns the withdraw request object or an error.
      */
     public static async withdraw(
         userId: string,
         amount: number,
+        sendAddress?: string,
         callbackUrl?: string): Promise<[WithdrawRequest | undefined, undefined | ServiceError]> {
 
         if (!this.initialized) {
@@ -280,6 +282,10 @@ export class TrtlApp {
         const body: any = {
             userId: userId,
             amount: amount
+        }
+
+        if (sendAddress) {
+            body.sendAddress = sendAddress
         }
 
         if (callbackUrl) {
