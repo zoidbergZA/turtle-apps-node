@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AppUser, AppDepositRequest, WithdrawRequest, InitOptions } from './Types';
+import { AppUser, DepositRequest, WithdrawRequest, InitOptions } from './Types';
 import { ServiceError } from './ServiceError';
 
 export class TrtlApp {
@@ -112,12 +112,12 @@ export class TrtlApp {
      * @param {string} userId The id of the user to create the deposit request for.
      * @param {number} amount The amount the user should deposit in atomic units.
      * @param {string} callbackUrl Optional callback URL to send status updates for this deposit request.
-     * @returns {Promise<[AppDepositRequest | undefined, undefined | ServiceError]>} Returns the newly created deposit request object or an error.
+     * @returns {Promise<[DepositRequest | undefined, undefined | ServiceError]>} Returns the newly created deposit request object or an error.
      */
     public static async requestDeposit(
         userId: string,
         amount: number,
-        callbackUrl?: string): Promise<[AppDepositRequest | undefined, undefined | ServiceError]> {
+        callbackUrl?: string): Promise<[DepositRequest | undefined, undefined | ServiceError]> {
 
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
@@ -135,7 +135,7 @@ export class TrtlApp {
 
         try {
             const response = await axios.post(endpoint, body);
-            return [response.data as AppDepositRequest, undefined];
+            return [response.data as DepositRequest, undefined];
         } catch (error) {
             return [undefined, error.response.data];
         }

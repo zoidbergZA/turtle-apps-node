@@ -14,7 +14,7 @@ export interface AppUser {
 
 export type DepositStatus = 'pending' | 'confirming' | 'finalizing' | 'completed';
 
-export interface AppDepositRequest {
+export interface DepositRequest {
   requestId: string;
   appId: string;
   userId: string;
