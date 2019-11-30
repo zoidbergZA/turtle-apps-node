@@ -14,8 +14,8 @@ export interface AppUser {
 
 export type DepositStatus = 'pending' | 'confirming' | 'finalizing' | 'completed';
 
-export interface DepositRequest {
-  requestId: string;
+export interface Deposit {
+  id: string;
   appId: string;
   userId: string;
   amountRequested: number;
@@ -37,19 +37,23 @@ export interface DepositRequest {
 }
 
 export interface UserTransfer {
-  transferId: string;
+  id: string;
   appId: string;
   senderId: string;
-  receiverId: string;
-  amount: number;
+  recipients: Recipient[];
   timestamp: number;
+}
+
+export interface Recipient {
+  userId: string;
+  amount: number;
 }
 
 export type WithdrawStatus = 'confirming' | 'completed';
 
-export interface WithdrawRequest
+export interface Withdrawal
 {
-  requestId: string;
+  id: string;
   paymentId: string,
   appId: string;
   userId: string;

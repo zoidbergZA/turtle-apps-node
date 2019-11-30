@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AppUser, DepositRequest, WithdrawRequest, InitOptions } from './Types';
+import { AppUser, Deposit, Withdrawal, InitOptions, UserTransfer, Recipient } from './Types';
 import { ServiceError } from './ServiceError';
 
 export class TrtlApp {
@@ -103,21 +103,21 @@ export class TrtlApp {
      *
      * ```ts
      *
-     * const [depositRequest, error] = await TrtlApp.requestDeposit('8RgwiWmgiYKQlUHWGaTW', 42);
+     * const [deposit, error] = await TrtlApp.requestDeposit('8RgwiWmgiYKQlUHWGaTW', 42);
      *
-     * if (depositRequest) {
-     *  console.log(`new deposit request created. qr code: ${depositRequest.qrCode}`);
+     * if (deposit) {
+     *  console.log(`new deposit request created. qr code: ${deposit.qrCode}`);
      * }
      * ```
      * @param {string} userId The id of the user to create the deposit request for.
      * @param {number} amount The amount the user should deposit in atomic units.
      * @param {string} callbackUrl Optional callback URL to send status updates for this deposit request.
-     * @returns {Promise<[DepositRequest | undefined, undefined | ServiceError]>} Returns the newly created deposit request object or an error.
+     * @returns {Promise<[Deposit | undefined, undefined | ServiceError]>} Returns the newly created deposit object or an error.
      */
     public static async requestDeposit(
         userId: string,
         amount: number,
-        callbackUrl?: string): Promise<[DepositRequest | undefined, undefined | ServiceError]> {
+        callbackUrl?: string): Promise<[Deposit | undefined, undefined | ServiceError]> {
 
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
@@ -135,7 +135,7 @@ export class TrtlApp {
 
         try {
             const response = await axios.post(endpoint, body);
-            return [response.data as DepositRequest, undefined];
+            return [response.data as Deposit, undefined];
         } catch (error) {
             return [undefined, error.response.data];
         }
@@ -196,7 +196,7 @@ export class TrtlApp {
      * @param {number} amount The amount to transfer in atomic units.
      * @returns {Promise<[string | undefined, undefined | ServiceError]>} Returns the transfer id if the transfer succeeded or an error.
      */
-    public static async userTransfer(
+    public static async transfer(
         senderId: string,
         receiverId: string,
         amount: number): Promise<[string | undefined, undefined | ServiceError]> {
@@ -207,13 +207,61 @@ export class TrtlApp {
 
         const endpoint = `${this.apiBase}/${this.appId}/transfers`;
 
+        const recipients: Recipient[] = [
+            { userId: receiverId, amount: amount }
+        ];
+
         try {
             const response = await axios.post(endpoint, {
                 senderId: senderId,
-                receiverId: receiverId,
-                amount: amount
+                recipients: recipients
             });
-            return [response.data.transferId as string, undefined];
+            return [(response.data as UserTransfer).id, undefined];
+        } catch (error) {
+            return [undefined, error.response.data];
+        }
+    }
+
+    /**
+     * Transfer funds from one user to many recipients.
+     *
+     * Example:
+     *
+     * ```ts
+     *
+     * const sender = '8RgwiWmgiYKQlUHWGaTW';
+     *
+     * const recipients = [
+     *  { userId: 'DawR7cEvQjEWMBVmMkkn', amount: 22 },
+     *  { userId: 'rwszORa1qaSXK0RbZ7F5', amount: 25 }
+     * ];
+     *
+     * const [transferId, error] = await TrtlApp.userTransfer(sender, recipients);
+     *
+     * if (transferId) {
+     *  console.log(`user transfer succeeded, transfer id: ${transferId}`);
+     * }
+     * ```
+     * @param {string} senderId The id of the user sending the funds.
+     * @param {Recipient[]} recipients The array of recipients and amounts.
+     * @returns {Promise<[string | undefined, undefined | ServiceError]>} Returns the transfer id if the transfer succeeded or an error.
+     */
+    public static async transferMany(
+        senderId: string,
+        recipients: Recipient[]): Promise<[string | undefined, undefined | ServiceError]> {
+
+        if (!this.initialized) {
+            return [undefined, new ServiceError('service/not-initialized')];
+        }
+
+        const endpoint = `${this.apiBase}/${this.appId}/transfers`;
+
+        try {
+            const response = await axios.post(endpoint, {
+                senderId: senderId,
+                recipients: recipients
+            });
+            return [(response.data as UserTransfer).id, undefined];
         } catch (error) {
             return [undefined, error.response.data];
         }
@@ -266,13 +314,13 @@ export class TrtlApp {
      * @param {number} amount The amount to withdraw in atomic units.
      * @param {string} sendAddress Optional address where the funds will be sent, if none is provided the user's withdraw address will be used.
      * @param {string} callbackUrl Optional callback URL to send status updates for this withdraw request.
-     * @returns {Promise<[WithdrawRequest | undefined, undefined | ServiceError]>} Returns the withdraw request object or an error.
+     * @returns {Promise<[Withdrawal | undefined, undefined | ServiceError]>} Returns the withdrawal object or an error.
      */
     public static async withdraw(
         userId: string,
         amount: number,
         sendAddress?: string,
-        callbackUrl?: string): Promise<[WithdrawRequest | undefined, undefined | ServiceError]> {
+        callbackUrl?: string): Promise<[Withdrawal | undefined, undefined | ServiceError]> {
 
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
@@ -294,7 +342,7 @@ export class TrtlApp {
 
         try {
             const response = await axios.post(endpoint, body);
-            return [response.data as WithdrawRequest, undefined];
+            return [response.data as Withdrawal, undefined];
         } catch (error) {
             return [undefined, error.response.data];
         }
