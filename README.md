@@ -39,7 +39,7 @@ if (depositRequest) {
 Transfer from one user to another
 
 ```ts
-const [transferId, error] = await TrtlApp.userTransfer(aliceId, bobId, 120);
+const [transferId, error] = await TrtlApp.transfer(aliceId, bobId, 120);
 
 if (transferId) {
     console.log(`user transfer succeeded, transfer id: ${transferId}`);
