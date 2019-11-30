@@ -84,12 +84,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.usertransfer.html#amount" class="tsd-kind-icon">amount</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.usertransfer.html#appid" class="tsd-kind-icon">app<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.usertransfer.html#receiverid" class="tsd-kind-icon">receiver<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.usertransfer.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.usertransfer.html#recipients" class="tsd-kind-icon">recipients</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.usertransfer.html#senderid" class="tsd-kind-icon">sender<wbr>Id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.usertransfer.html#timestamp" class="tsd-kind-icon">timestamp</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.usertransfer.html#transferid" class="tsd-kind-icon">transfer<wbr>Id</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,16 +96,6 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="amount" class="tsd-anchor"></a>
-					<h3>amount</h3>
-					<div class="tsd-signature tsd-kind-icon">amount<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in Types.ts:44</li>
-						</ul>
-					</aside>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="appid" class="tsd-anchor"></a>
 					<h3>app<wbr>Id</h3>
@@ -118,9 +107,19 @@
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="receiverid" class="tsd-anchor"></a>
-					<h3>receiver<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">receiver<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in Types.ts:40</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="recipients" class="tsd-anchor"></a>
+					<h3>recipients</h3>
+					<div class="tsd-signature tsd-kind-icon">recipients<span class="tsd-signature-symbol">:</span> <a href="_types_.recipient.html" class="tsd-signature-type">Recipient</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in Types.ts:43</li>
@@ -143,17 +142,7 @@
 					<div class="tsd-signature tsd-kind-icon">timestamp<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in Types.ts:45</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="transferid" class="tsd-anchor"></a>
-					<h3>transfer<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">transfer<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in Types.ts:40</li>
+							<li>Defined in Types.ts:44</li>
 						</ul>
 					</aside>
 				</section>
@@ -182,10 +171,13 @@
 						<a href="_types_.appuser.html" class="tsd-kind-icon">App<wbr>User</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_types_.depositrequest.html" class="tsd-kind-icon">Deposit<wbr>Request</a>
+						<a href="_types_.deposit.html" class="tsd-kind-icon">Deposit</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_types_.initoptions.html" class="tsd-kind-icon">Init<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_types_.recipient.html" class="tsd-kind-icon">Recipient</a>
 					</li>
 				</ul>
 				<ul class="current">
@@ -193,13 +185,13 @@
 						<a href="_types_.usertransfer.html" class="tsd-kind-icon">User<wbr>Transfer</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.usertransfer.html#amount" class="tsd-kind-icon">amount</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_types_.usertransfer.html#appid" class="tsd-kind-icon">app<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.usertransfer.html#receiverid" class="tsd-kind-icon">receiver<wbr>Id</a>
+								<a href="_types_.usertransfer.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.usertransfer.html#recipients" class="tsd-kind-icon">recipients</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_types_.usertransfer.html#senderid" class="tsd-kind-icon">sender<wbr>Id</a>
@@ -207,15 +199,12 @@
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_types_.usertransfer.html#timestamp" class="tsd-kind-icon">timestamp</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.usertransfer.html#transferid" class="tsd-kind-icon">transfer<wbr>Id</a>
-							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_types_.withdrawrequest.html" class="tsd-kind-icon">Withdraw<wbr>Request</a>
+						<a href="_types_.withdrawal.html" class="tsd-kind-icon">Withdrawal</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
 						<a href="../modules/_types_.html#depositstatus" class="tsd-kind-icon">Deposit<wbr>Status</a>
