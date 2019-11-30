@@ -185,7 +185,7 @@ export class TrtlApp {
      *
      * ```ts
      *
-     * const [transferId, error] = await TrtlApp.userTransfer('8RgwiWmgiYKQlUHWGaTW', 'EWshpvxky57RrAeBCf8Z', 42);
+     * const [transferId, error] = await TrtlApp.transfer('8RgwiWmgiYKQlUHWGaTW', 'EWshpvxky57RrAeBCf8Z', 42);
      *
      * if (transferId) {
      *  console.log(`user transfer succeeded, transfer id: ${transferId}`);
