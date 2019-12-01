@@ -89,10 +89,10 @@ TrtlApp.initialize(<span class="hljs-string">'YOUR_APP_ID'</span>, <span class="
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`new deposit request created. qr code: <span class="hljs-subst">${depositRequest.qrCode}</span>`</span>);
 }</code></pre>
 				<p>Transfer from one user to another</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">const</span> [transferId, error] = <span class="hljs-keyword">await</span> TrtlApp.userTransfer(aliceId, bobId, <span class="hljs-number">120</span>);
+				<pre><code class="language-ts"><span class="hljs-keyword">const</span> [transfer, error] = <span class="hljs-keyword">await</span> TrtlApp.transfer(aliceId, bobId, <span class="hljs-number">120</span>);
 
-<span class="hljs-keyword">if</span> (transferId) {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`user transfer succeeded, transfer id: <span class="hljs-subst">${transferId}</span>`</span>);
+<span class="hljs-keyword">if</span> (transfer) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`user transfer succeeded, transfer id: <span class="hljs-subst">${transfer.id}</span>`</span>);
 }</code></pre>
 				<p>Set a user&#39;s withdraw address</p>
 				<pre><code class="language-ts"><span class="hljs-keyword">const</span> [address, error] = <span class="hljs-keyword">await</span> TrtlApp.setWithdrawAddress(

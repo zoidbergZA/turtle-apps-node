@@ -185,21 +185,21 @@ export class TrtlApp {
      *
      * ```ts
      *
-     * const [transferId, error] = await TrtlApp.transfer('8RgwiWmgiYKQlUHWGaTW', 'EWshpvxky57RrAeBCf8Z', 42);
+     * const [transfer, error] = await TrtlApp.transfer('8RgwiWmgiYKQlUHWGaTW', 'EWshpvxky57RrAeBCf8Z', 42);
      *
-     * if (transferId) {
-     *  console.log(`user transfer succeeded, transfer id: ${transferId}`);
+     * if (transfer) {
+     *  console.log(`user transfer succeeded, transfer id: ${transfer.id}`);
      * }
      * ```
      * @param {string} senderId The id of the user sending the funds.
      * @param {string} receiverId The receiving user's id.
      * @param {number} amount The amount to transfer in atomic units.
-     * @returns {Promise<[string | undefined, undefined | ServiceError]>} Returns the transfer id if the transfer succeeded or an error.
+     * @returns {Promise<[UserTransfer | undefined, undefined | ServiceError]>} Returns the transfer object if the transfer succeeded or an error.
      */
     public static async transfer(
         senderId: string,
         receiverId: string,
-        amount: number): Promise<[string | undefined, undefined | ServiceError]> {
+        amount: number): Promise<[UserTransfer | undefined, undefined | ServiceError]> {
 
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
@@ -216,7 +216,7 @@ export class TrtlApp {
                 senderId: senderId,
                 recipients: recipients
             });
-            return [(response.data as UserTransfer).id, undefined];
+            return [(response.data as UserTransfer), undefined];
         } catch (error) {
             return [undefined, error.response.data];
         }
@@ -236,19 +236,19 @@ export class TrtlApp {
      *  { userId: 'rwszORa1qaSXK0RbZ7F5', amount: 25 }
      * ];
      *
-     * const [transferId, error] = await TrtlApp.userTransfer(sender, recipients);
+     * const [transfer, error] = await TrtlApp.transferMany(sender, recipients);
      *
-     * if (transferId) {
-     *  console.log(`user transfer succeeded, transfer id: ${transferId}`);
+     * if (transfer) {
+     *  console.log(`user transfer succeeded, transfer id: ${transfer.id}`);
      * }
      * ```
      * @param {string} senderId The id of the user sending the funds.
-     * @param {Recipient[]} recipients The array of recipients and amounts.
-     * @returns {Promise<[string | undefined, undefined | ServiceError]>} Returns the transfer id if the transfer succeeded or an error.
+     * @param {Recipient[]} recipients The array of recipients.
+     * @returns {Promise<[UserTransfer | undefined, undefined | ServiceError]>} Returns the transfer object if the transfer succeeded or an error.
      */
     public static async transferMany(
         senderId: string,
-        recipients: Recipient[]): Promise<[string | undefined, undefined | ServiceError]> {
+        recipients: Recipient[]): Promise<[UserTransfer | undefined, undefined | ServiceError]> {
 
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
@@ -261,7 +261,7 @@ export class TrtlApp {
                 senderId: senderId,
                 recipients: recipients
             });
-            return [(response.data as UserTransfer).id, undefined];
+            return [(response.data as UserTransfer), undefined];
         } catch (error) {
             return [undefined, error.response.data];
         }
