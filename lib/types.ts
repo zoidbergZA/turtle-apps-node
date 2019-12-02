@@ -2,6 +2,8 @@ export interface InitOptions {
   apiBase?: string
 }
 
+export type UsersOrderBy = 'userId' | 'createdAt' | 'balanceUnlocked';
+
 export interface AppUser {
     userId: string;
     withdrawAddress?: string;

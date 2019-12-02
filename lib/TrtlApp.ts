@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AppUser, Deposit, Withdrawal, InitOptions, UserTransfer, Recipient } from './Types';
+import { AppUser, Deposit, Withdrawal, InitOptions, UserTransfer, Recipient, UsersOrderBy } from './Types';
 import { ServiceError } from './ServiceError';
 
 export class TrtlApp {
@@ -91,6 +91,51 @@ export class TrtlApp {
         try {
             const response = await axios.get(endpoint);
             return [(response.data as AppUser), undefined];
+        } catch (error) {
+            return [undefined, error.response.data];
+        }
+    }
+
+    /**
+     * Gets a list of app users.
+     *
+     * Example:
+     *
+     * ```ts
+     *
+     * const [users, error] = await TrtlApp.getUsers('createdAt', 25);
+     *
+     * if (users) {
+     *  console.log(`Amount of users returned: ${users.length}`);
+     * }
+     * ```
+     * @param {UsersOrderBy} orderBy Property to order the users by.
+     * @param {number} limit The max amount of users to retrieve.
+     * @param {string} startAfterUser Only return users after this user id, used for pagination.
+     * @returns {Promise<[AppUser[] | undefined, undefined | ServiceError]>} Returns the list of users.
+     */
+    public static async getUsers(
+        orderBy: UsersOrderBy = 'createdAt',
+        limit?: number,
+        startAfterUser?: string): Promise<[AppUser[] | undefined, undefined | ServiceError]> {
+
+        if (!this.initialized) {
+            return [undefined, new ServiceError('service/not-initialized')];
+        }
+
+        let endpoint = `${this.apiBase}/${this.appId}/users?orderBy=${orderBy}`;
+
+        if (limit) {
+            endpoint += `&limit=${limit}`;
+        }
+
+        if (startAfterUser) {
+            endpoint += `&startAfter=${startAfterUser}`;
+        }
+
+        try {
+            const response = await axios.get(endpoint);
+            return [(response.data as AppUser[]), undefined];
         } catch (error) {
             return [undefined, error.response.data];
         }
