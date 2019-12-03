@@ -346,6 +346,37 @@ export class TrtlApp {
     }
 
     /**
+     * Gets an app transfer with the given ID.
+     *
+     * Example:
+     *
+     * ```ts
+     *
+     * const [transfer, error] = await TrtlApp.getDeposit('BxPoD2A7uyxZyMdl6ojn');
+     *
+     * if (transfer) {
+     *  console.log(`Retrieved transfer with ID: ${transfer.id}`);
+     * }
+     * ```
+     * @param {string} transferId The ID of the transfer to retrieve.
+     * @returns {Promise<[UserTransfer | undefined, undefined | ServiceError]>} Returns the transfer object or an error.
+     */
+    public static async getTransfer(transferId: string): Promise<[UserTransfer | undefined, undefined | ServiceError]> {
+        if (!this.initialized) {
+            return [undefined, new ServiceError('service/not-initialized')];
+        }
+
+        const endpoint = `${this.apiBase}/${this.appId}/transfer/${transferId}`;
+
+        try {
+            const response = await axios.get(endpoint);
+            return [(response.data as UserTransfer), undefined];
+        } catch (error) {
+            return [undefined, error.response.data];
+        }
+    }
+
+    /**
      * Gets the current node fee that will be charged on user withdrawals.
      *
      * Example:
@@ -421,6 +452,37 @@ export class TrtlApp {
         try {
             const response = await axios.post(endpoint, body);
             return [response.data as Withdrawal, undefined];
+        } catch (error) {
+            return [undefined, error.response.data];
+        }
+    }
+
+    /**
+     * Gets a withdrawal with the given ID.
+     *
+     * Example:
+     *
+     * ```ts
+     *
+     * const [withdrawal, error] = await TrtlApp.getWithdrawal('KTZ0ATzCUwgR6PMES0iD');
+     *
+     * if (withdrawal) {
+     *  console.log(`Retrieved withdrawal with ID: ${withdrawal.id}`);
+     * }
+     * ```
+     * @param {string} withdrawalId The ID of the withdrawal to retrieve.
+     * @returns {Promise<[UserTransfer | undefined, undefined | ServiceError]>} Returns the withdrawal object or an error.
+     */
+    public static async getWithdrawal(withdrawalId: string): Promise<[Withdrawal | undefined, undefined | ServiceError]> {
+        if (!this.initialized) {
+            return [undefined, new ServiceError('service/not-initialized')];
+        }
+
+        const endpoint = `${this.apiBase}/${this.appId}/withdrawals/${withdrawalId}`;
+
+        try {
+            const response = await axios.get(endpoint);
+            return [(response.data as Withdrawal), undefined];
         } catch (error) {
             return [undefined, error.response.data];
         }
