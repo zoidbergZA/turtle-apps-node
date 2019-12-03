@@ -113,8 +113,10 @@ export class TrtlApp {
      * @param {number} limit The max amount of users to retrieve.
      * @param {string} startAfterUser Only return users after this user id, used for pagination.
      * @returns {Promise<[AppUser[] | undefined, undefined | ServiceError]>} Returns the list of users.
+
+       NOTE: disabled this endpoint for now by setting it private
      */
-    public static async getUsers(
+    private static async getUsers(
         orderBy: UsersOrderBy = 'createdAt',
         limit?: number,
         startAfterUser?: string): Promise<[AppUser[] | undefined, undefined | ServiceError]> {
@@ -181,6 +183,37 @@ export class TrtlApp {
         try {
             const response = await axios.post(endpoint, body);
             return [response.data as Deposit, undefined];
+        } catch (error) {
+            return [undefined, error.response.data];
+        }
+    }
+
+    /**
+     * Gets an app deposit with the given ID.
+     *
+     * Example:
+     *
+     * ```ts
+     *
+     * const [deposit, error] = await TrtlApp.getDeposit('AE3AI1GNcOOz1qIz7rS1');
+     *
+     * if (deposit) {
+     *  console.log(`Retrieved deposit with ID: ${deposit.id}`);
+     * }
+     * ```
+     * @param {string} depositId The ID of the deposit to retrieve.
+     * @returns {Promise<[Deposit | undefined, undefined | ServiceError]>} Returns the deposit object or an error.
+     */
+    public static async getDeposit(depositId: string): Promise<[Deposit | undefined, undefined | ServiceError]> {
+        if (!this.initialized) {
+            return [undefined, new ServiceError('service/not-initialized')];
+        }
+
+        const endpoint = `${this.apiBase}/${this.appId}/deposits/${depositId}`;
+
+        try {
+            const response = await axios.get(endpoint);
+            return [(response.data as Deposit), undefined];
         } catch (error) {
             return [undefined, error.response.data];
         }
