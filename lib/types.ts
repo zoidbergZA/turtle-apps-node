@@ -5,13 +5,14 @@ export interface InitOptions {
 export type UsersOrderBy = 'userId' | 'createdAt' | 'balanceUnlocked';
 
 export interface AppUser {
-    userId: string;
-    withdrawAddress?: string;
-    balanceUnlocked: number;
-    balanceLocked: number;
-    createdAt: number;
-    deleted: boolean;
-    data?: any;
+  userId: string;
+  balanceUnlocked: number;
+  balanceLocked: number;
+  createdAt: number;
+  deleted: boolean;
+  paymentId: string;
+  withdrawAddress?: string;
+  data?: any;
 }
 
 export type DepositStatus = 'pending' | 'confirming' | 'finalizing' | 'completed';
