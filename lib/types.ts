@@ -11,32 +11,29 @@ export interface AppUser {
   createdAt: number;
   deleted: boolean;
   paymentId: string;
+  integratedAddress: string;
+  depositQrCode: string;
   withdrawAddress?: string;
   data?: any;
 }
 
-export type DepositStatus = 'pending' | 'confirming' | 'finalizing' | 'completed';
+export type DepositStatus = 'confirming' | 'completed';
 
 export interface Deposit {
   id: string;
   appId: string;
   userId: string;
-  amountRequested: number;
-  amountConfirmed: number;
-  amountUnconfirmed: number;
+  blockHeight: number;
+  amount: number;
   depositAddress: string;
   paymentId: string;
   integratedAddress: string;
   status: DepositStatus;
-  txHashes: string[];
+  txHash: string;
   createdDate: number;
-  expireDate: number;
   userCredited: boolean;
-  userCreditedAmount: number;
-  expired: boolean;
-  qrCode: string;
   lastUpdate: number;
-  callbackUrl?: string;
+  cancelled: boolean;
 }
 
 export interface UserTransfer {
