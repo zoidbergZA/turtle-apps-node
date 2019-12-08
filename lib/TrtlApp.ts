@@ -42,15 +42,15 @@ export class TrtlApp {
      *
      * ```ts
      *
-     * const [userId, error] = await TrtlApp.createUser();
+     * const [user, error] = await TrtlApp.createUser();
      *
-     * if (userId) {
-     *  console.log(`New user created with id: ${userId}`);
+     * if (user) {
+     *  console.log(`New user created with id: ${user.userId}`);
      * }
      * ```
-     * @returns {Promise<[string | undefined, undefined | ServiceError]>} Returns the userId of the newly created user or an error.
+     * @returns {Promise<[AppUser | undefined, undefined | ServiceError]>} Returns the newly created user object or an error.
      */
-    public static async createUser(): Promise<[string | undefined, undefined | ServiceError]> {
+    public static async createUser(): Promise<[AppUser | undefined, undefined | ServiceError]> {
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
         }
@@ -59,7 +59,7 @@ export class TrtlApp {
 
         try {
             const response = await axios.post(endpoint);
-            return [(response.data as AppUser).userId, undefined];
+            return [(response.data as AppUser), undefined];
         } catch (error) {
             return [undefined, error.response.data];
         }

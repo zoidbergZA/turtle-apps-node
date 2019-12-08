@@ -22,24 +22,16 @@ TrtlApp.initialize('YOUR_APP_ID', 'YOUR_APP_SECRET');
 Create users
 
 ```ts
-const [aliceId, error]  = await TrtlApp.createUser();
-const [bobId, error]    = await TrtlApp.createUser();
-```
+const [alice, error]  = await TrtlApp.createUser();
+const [bob, error]    = await TrtlApp.createUser();
 
-Request a deposit from a user
-
-```ts
-const [depositRequest, error] = await TrtlApp.requestDeposit(aliceId, 420);
-
-if (depositRequest) {
-    console.log(`new deposit request created. qr code: ${depositRequest.qrCode}`);
-}
+console.log(`alice deposit address: ${alice.integratedAddress}`);
 ```
 
 Transfer from one user to another
 
 ```ts
-const [transfer, error] = await TrtlApp.transfer(aliceId, bobId, 120);
+const [transfer, error] = await TrtlApp.transfer(alice.userId, bob.userId, 120);
 
 if (transfer) {
     console.log(`user transfer succeeded, transfer id: ${transfer.id}`);
@@ -50,7 +42,7 @@ Set a user's withdraw address
 
 ```ts
 const [address, error] = await TrtlApp.setWithdrawAddress(
-    bobId,
+    bob.userId,
     'TRTLv32bGBP2cfM3SdijU4TTYnCPoR33g5eTas6n9HamBvu8ozc9BWHZza5j7cmBFSgh4dmmGRongfoEEzcvuAEF8dLxixsS7he');
 
 if (address) {
@@ -61,7 +53,7 @@ if (address) {
 User withdraw
 
 ```ts
-const [withdrawal, error] = await TrtlApp.withdraw(bobId, 42);
+const [withdrawal, error] = await TrtlApp.withdraw(bob.userId, 42);
 
 if (withdrawal) {
     console.log(`Withdrawal request created successfully and is beeing processed, paymentId: ${withdrawal.paymentId}`);
