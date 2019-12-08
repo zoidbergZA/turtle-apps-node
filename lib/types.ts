@@ -11,7 +11,7 @@ export interface AppUser {
   createdAt: number;
   deleted: boolean;
   paymentId: string;
-  integratedAddress: string;
+  address: string;
   depositQrCode: string;
   withdrawAddress?: string;
   data?: any;
