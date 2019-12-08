@@ -38,22 +38,13 @@ if (transfer) {
 }
 ```
 
-Set a user's withdraw address
-
-```ts
-const [address, error] = await TrtlApp.setWithdrawAddress(
-    bob.userId,
-    'TRTLv32bGBP2cfM3SdijU4TTYnCPoR33g5eTas6n9HamBvu8ozc9BWHZza5j7cmBFSgh4dmmGRongfoEEzcvuAEF8dLxixsS7he');
-
-if (address) {
-    console.log(`user withdraw address successfully set to: ${address}`);
-}
-```
-
 User withdraw
 
 ```ts
-const [withdrawal, error] = await TrtlApp.withdraw(bob.userId, 42);
+const [withdrawal, error] = await TrtlApp.withdraw(
+    bob.userId,
+    42,
+    'TRTLv32bGBP2cfM3SdijU4TTYnCPoR33g5eTas6n9HamBvu8ozc9BWHZza5j7cmBFSgh4dmmGRongfoEEzcvuAEF8dLxixsS7he');
 
 if (withdrawal) {
     console.log(`Withdrawal request created successfully and is beeing processed, paymentId: ${withdrawal.paymentId}`);

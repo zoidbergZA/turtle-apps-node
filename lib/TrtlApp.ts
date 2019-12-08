@@ -377,14 +377,12 @@ export class TrtlApp {
      * @param {string} userId The id of the user withdrawing funds.
      * @param {number} amount The amount to withdraw in atomic units.
      * @param {string} sendAddress Optional address where the funds will be sent, if none is provided the user's withdraw address will be used.
-     * @param {string} callbackUrl Optional callback URL to send status updates for this withdraw request.
      * @returns {Promise<[Withdrawal | undefined, undefined | ServiceError]>} Returns the withdrawal object or an error.
      */
     public static async withdraw(
         userId: string,
         amount: number,
-        sendAddress?: string,
-        callbackUrl?: string): Promise<[Withdrawal | undefined, undefined | ServiceError]> {
+        sendAddress?: string): Promise<[Withdrawal | undefined, undefined | ServiceError]> {
 
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
@@ -398,10 +396,6 @@ export class TrtlApp {
 
         if (sendAddress) {
             body.sendAddress = sendAddress
-        }
-
-        if (callbackUrl) {
-            body.callbackUrl = callbackUrl
         }
 
         try {
