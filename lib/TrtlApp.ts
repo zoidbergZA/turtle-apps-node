@@ -144,51 +144,6 @@ export class TrtlApp {
     }
 
     /**
-     * Creates a new deposit request for the user.
-     *
-     * Example:
-     *
-     * ```ts
-     *
-     * const [deposit, error] = await TrtlApp.requestDeposit('8RgwiWmgiYKQlUHWGaTW', 42);
-     *
-     * if (deposit) {
-     *  console.log(`new deposit request created. qr code: ${deposit.qrCode}`);
-     * }
-     * ```
-     * @param {string} userId The id of the user to create the deposit request for.
-     * @param {number} amount The amount the user should deposit in atomic units.
-     * @param {string} callbackUrl Optional callback URL to send status updates for this deposit request.
-     * @returns {Promise<[Deposit | undefined, undefined | ServiceError]>} Returns the newly created deposit object or an error.
-     */
-    public static async requestDeposit(
-        userId: string,
-        amount: number,
-        callbackUrl?: string): Promise<[Deposit | undefined, undefined | ServiceError]> {
-
-        if (!this.initialized) {
-            return [undefined, new ServiceError('service/not-initialized')];
-        }
-
-        const endpoint = `${this.apiBase}/${this.appId}/deposits`;
-        const body: any = {
-            userId: userId,
-            amount: amount
-        }
-
-        if (callbackUrl) {
-            body.callbackUrl = callbackUrl;
-        }
-
-        try {
-            const response = await axios.post(endpoint, body);
-            return [response.data as Deposit, undefined];
-        } catch (error) {
-            return [undefined, error.response.data];
-        }
-    }
-
-    /**
      * Gets an app deposit with the given ID.
      *
      * Example:
