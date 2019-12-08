@@ -83,7 +83,7 @@ TrtlApp.initialize(<span class="hljs-string">'YOUR_APP_ID'</span>, <span class="
 				<pre><code class="language-ts"><span class="hljs-keyword">const</span> [alice, error]  = <span class="hljs-keyword">await</span> TrtlApp.createUser();
 <span class="hljs-keyword">const</span> [bob, error]    = <span class="hljs-keyword">await</span> TrtlApp.createUser();
 
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`alice deposit address: <span class="hljs-subst">${alice.integratedAddress}</span>`</span>);</code></pre>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`alice deposit address: <span class="hljs-subst">${alice.address}</span>`</span>);</code></pre>
 				<p>Transfer from one user to another</p>
 				<pre><code class="language-ts"><span class="hljs-keyword">const</span> [transfer, error] = <span class="hljs-keyword">await</span> TrtlApp.transfer(alice.userId, bob.userId, <span class="hljs-number">120</span>);
 
