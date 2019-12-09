@@ -25,7 +25,7 @@ Create users
 const [alice, error]  = await TrtlApp.createUser();
 const [bob, error]    = await TrtlApp.createUser();
 
-console.log(`alice deposit address: ${alice.address}`);
+console.log(`alice deposit address: ${alice.depositAddress}`);
 ```
 
 Transfer from one user to another
