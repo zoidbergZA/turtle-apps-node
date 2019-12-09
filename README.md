@@ -47,7 +47,7 @@ const [withdrawal, error] = await TrtlApp.withdraw(
     'TRTLv32bGBP2cfM3SdijU4TTYnCPoR33g5eTas6n9HamBvu8ozc9BWHZza5j7cmBFSgh4dmmGRongfoEEzcvuAEF8dLxixsS7he');
 
 if (withdrawal) {
-    console.log(`Withdrawal request created successfully and is beeing processed, paymentId: ${withdrawal.paymentId}`);
+    console.log(`Withdrawal request created successfully and is beeing processed, id: ${withdrawal.id}`);
 }
 ```
 

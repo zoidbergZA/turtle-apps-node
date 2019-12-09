@@ -59,7 +59,7 @@ export interface Withdrawal
   userId: string;
   amount: number;
   fee: number;
-  sendAddress: string;
+  address: string;
   timestamp: number;
   lastUpdate: number;
   status: WithdrawStatus;
@@ -67,5 +67,4 @@ export interface Withdrawal
   blockHeight: number;
   failed: boolean;
   txHash?: string;
-  callbackUrl?: string;
 }
