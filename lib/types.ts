@@ -6,6 +6,7 @@ export type UsersOrderBy = 'userId' | 'createdAt' | 'balanceUnlocked';
 
 export interface AppUser {
   userId: string;
+  appId: string;
   balanceUnlocked: number;
   balanceLocked: number;
   createdAt: number;
