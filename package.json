@@ -19,9 +19,11 @@
     "url": "git://github.com/zoidbergZA/turtle-apps-node.git"
   },
   "dependencies": {
-    "axios": "^0.19.0"
+    "axios": "^0.19.0",
+    "crypto": "^1.0.1"
   },
   "devDependencies": {
+    "@types/node": "^13.1.0",
     "typedoc": "^0.15.0"
   }
 }

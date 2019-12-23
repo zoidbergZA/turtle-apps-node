@@ -1,3 +1,4 @@
+import * as crypto from 'crypto';
 import axios from 'axios';
 import { AppUser, Deposit, Withdrawal, InitOptions, UserTransfer, Recipient, UsersOrderBy } from './Types';
 import { ServiceError } from './ServiceError';
@@ -6,6 +7,7 @@ export class TrtlApp {
     private static apiBase = 'https://trtlapps.io/api';
     private static initialized: boolean = false;
     private static appId: string | undefined;
+    private static appSecret: string | undefined;
 
     /**
      * Initializes the app service, call this before any other functions.
@@ -23,7 +25,9 @@ export class TrtlApp {
      * @param {string} options Optional initialization parameters.
      */
     public static initialize(appId: string, appSecret: string, options?: InitOptions): void {
-        this.appId = appId;
+        this.appId      = appId;
+        this.appSecret  = appSecret;
+
         axios.defaults.headers.common = {'Authorization': `Bearer ${appSecret}`}
 
         if (options) {
@@ -435,5 +439,43 @@ export class TrtlApp {
         } catch (error) {
             return [undefined, error.response.data];
         }
+    }
+
+    /**
+     * Verifies that the webhook call was sent from TRTL apps using your app secret.
+     *
+     * Example:
+     *
+     * ```ts
+     *
+     * const signature = 'SIGNATURE';
+     * const requestBody: any = {}
+     *
+     * const [isValid, error] = await TrtlApp.validateWebhookCall(signature, requestBody);
+     *
+     * if (!error) {
+     *  console.log(`webhook request validation result: ${isValid}`);
+     * }
+     * ```
+     * @param {string} requestSignature This hash signature is passed along with each request in the headers as 'x-trltapps-signature'
+     * @param {string} requestBody The body of the POST request
+     * @returns {[boolean | undefined, undefined | ServiceError]} Returns a boolean or an error.
+     */
+    public static validateWebhookCall(
+        requestSignature: string,
+        requestBody: any): [boolean | undefined, undefined | ServiceError] {
+
+        if (!this.initialized || !this.appSecret) {
+            return [undefined, new ServiceError('service/not-initialized')];
+        }
+
+        const hash = 'sha256=' + crypto
+            .createHmac("sha256", this.appSecret)
+            .update(JSON.stringify(requestBody))
+            .digest("hex");
+
+        const isValid = hash === requestSignature;
+
+        return [isValid, undefined];
     }
 }
