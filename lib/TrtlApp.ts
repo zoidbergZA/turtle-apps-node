@@ -457,7 +457,7 @@ export class TrtlApp {
      *  console.log(`webhook request validation result: ${isValid}`);
      * }
      * ```
-     * @param {string} requestSignature This hash signature is passed along with each request in the headers as 'x-trltapps-signature'
+     * @param {string} requestSignature This hash signature is passed along with each request in the headers as 'x-trtl-apps-signature'
      * @param {string} requestBody The body of the POST request
      * @returns {[boolean | undefined, undefined | ServiceError]} Returns a boolean or an error.
      */
