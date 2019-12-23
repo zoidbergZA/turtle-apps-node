@@ -1,4 +1,4 @@
-import * as crypto from 'crypto';
+// import * as crypto from 'crypto';
 import axios from 'axios';
 import { AppUser, Deposit, Withdrawal, InitOptions, UserTransfer, Recipient, UsersOrderBy } from './Types';
 import { ServiceError } from './ServiceError';
@@ -441,41 +441,44 @@ export class TrtlApp {
         }
     }
 
-    /**
-     * Verifies that the webhook call was sent from TRTL apps using your app secret.
-     *
-     * Example:
-     *
-     * ```ts
-     *
-     * const signature = 'SIGNATURE';
-     * const requestBody: any = {}
-     *
-     * const [isValid, error] = await TrtlApp.validateWebhookCall(signature, requestBody);
-     *
-     * if (!error) {
-     *  console.log(`webhook request validation result: ${isValid}`);
-     * }
-     * ```
-     * @param {string} requestSignature This hash signature is passed along with each request in the headers as 'x-trtl-apps-signature'
-     * @param {string} requestBody The body of the POST request
-     * @returns {[boolean | undefined, undefined | ServiceError]} Returns a boolean or an error.
-     */
-    public static validateWebhookCall(
-        requestSignature: string,
-        requestBody: any): [boolean | undefined, undefined | ServiceError] {
+    // NOTE: disabled the validateWebhookCall helper function for now because of issues related to using
+    // the 'crypto' module in frontend frameworks like angular.
 
-        if (!this.initialized || !this.appSecret) {
-            return [undefined, new ServiceError('service/not-initialized')];
-        }
+    // /**
+    //  * Verifies that the webhook call was sent from TRTL apps using your app secret.
+    //  *
+    //  * Example:
+    //  *
+    //  * ```ts
+    //  *
+    //  * const signature = 'SIGNATURE';
+    //  * const requestBody: any = {}
+    //  *
+    //  * const [isValid, error] = await TrtlApp.validateWebhookCall(signature, requestBody);
+    //  *
+    //  * if (!error) {
+    //  *  console.log(`webhook request validation result: ${isValid}`);
+    //  * }
+    //  * ```
+    //  * @param {string} requestSignature This hash signature is passed along with each request in the headers as 'x-trtl-apps-signature'
+    //  * @param {string} requestBody The body of the POST request
+    //  * @returns {[boolean | undefined, undefined | ServiceError]} Returns a boolean or an error.
+    //  */
+    // public static validateWebhookCall(
+    //     requestSignature: string,
+    //     requestBody: any): [boolean | undefined, undefined | ServiceError] {
 
-        const hash = 'sha256=' + crypto
-            .createHmac("sha256", this.appSecret)
-            .update(JSON.stringify(requestBody))
-            .digest("hex");
+    //     if (!this.initialized || !this.appSecret) {
+    //         return [undefined, new ServiceError('service/not-initialized')];
+    //     }
 
-        const isValid = hash === requestSignature;
+    //     const hash = 'sha256=' + crypto
+    //         .createHmac("sha256", this.appSecret)
+    //         .update(JSON.stringify(requestBody))
+    //         .digest("hex");
 
-        return [isValid, undefined];
-    }
+    //     const isValid = hash === requestSignature;
+
+    //     return [isValid, undefined];
+    // }
 }
