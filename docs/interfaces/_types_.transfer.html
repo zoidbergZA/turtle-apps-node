@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AppUser | trtl-apps</title>
+	<title>Transfer | trtl-apps</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -59,10 +59,10 @@
 					<a href="../modules/_types_.html">&quot;Types&quot;</a>
 				</li>
 				<li>
-					<a href="_types_.appuser.html">AppUser</a>
+					<a href="_types_.transfer.html">Transfer</a>
 				</li>
 			</ul>
-			<h1>Interface AppUser</h1>
+			<h1>Interface Transfer</h1>
 		</div>
 	</div>
 </header>
@@ -73,7 +73,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">AppUser</span>
+						<span class="target">Transfer</span>
 					</li>
 				</ul>
 			</section>
@@ -84,17 +84,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.appuser.html#appid" class="tsd-kind-icon">app<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.appuser.html#balancelocked" class="tsd-kind-icon">balance<wbr>Locked</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.appuser.html#balanceunlocked" class="tsd-kind-icon">balance<wbr>Unlocked</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.appuser.html#createdat" class="tsd-kind-icon">created<wbr>At</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.appuser.html#data" class="tsd-kind-icon">data</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.appuser.html#deleted" class="tsd-kind-icon">deleted</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.appuser.html#depositaddress" class="tsd-kind-icon">deposit<wbr>Address</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.appuser.html#depositqrcode" class="tsd-kind-icon">deposit<wbr>QrCode</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.appuser.html#paymentid" class="tsd-kind-icon">payment<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.appuser.html#userid" class="tsd-kind-icon">user<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.appuser.html#withdrawaddress" class="tsd-kind-icon">withdraw<wbr>Address</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.transfer.html#appid" class="tsd-kind-icon">app<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.transfer.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.transfer.html#recipients" class="tsd-kind-icon">recipients</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.transfer.html#senderid" class="tsd-kind-icon">sender<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_types_.transfer.html#timestamp" class="tsd-kind-icon">timestamp</a></li>
 							</ul>
 						</section>
 					</div>
@@ -108,107 +102,47 @@
 					<div class="tsd-signature tsd-kind-icon">app<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/2e3d9be/lib/Types.ts#L9">Types.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/b7f8821/lib/Types.ts#L42">Types.ts:42</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="balancelocked" class="tsd-anchor"></a>
-					<h3>balance<wbr>Locked</h3>
-					<div class="tsd-signature tsd-kind-icon">balance<wbr>Locked<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/2e3d9be/lib/Types.ts#L11">Types.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/b7f8821/lib/Types.ts#L41">Types.ts:41</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="balanceunlocked" class="tsd-anchor"></a>
-					<h3>balance<wbr>Unlocked</h3>
-					<div class="tsd-signature tsd-kind-icon">balance<wbr>Unlocked<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="recipients" class="tsd-anchor"></a>
+					<h3>recipients</h3>
+					<div class="tsd-signature tsd-kind-icon">recipients<span class="tsd-signature-symbol">:</span> <a href="_types_.recipient.html" class="tsd-signature-type">Recipient</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/2e3d9be/lib/Types.ts#L10">Types.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/b7f8821/lib/Types.ts#L44">Types.ts:44</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="createdat" class="tsd-anchor"></a>
-					<h3>created<wbr>At</h3>
-					<div class="tsd-signature tsd-kind-icon">created<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="senderid" class="tsd-anchor"></a>
+					<h3>sender<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">sender<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/2e3d9be/lib/Types.ts#L12">Types.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/b7f8821/lib/Types.ts#L43">Types.ts:43</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="data" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<a name="timestamp" class="tsd-anchor"></a>
+					<h3>timestamp</h3>
+					<div class="tsd-signature tsd-kind-icon">timestamp<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/2e3d9be/lib/Types.ts#L18">Types.ts:18</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="deleted" class="tsd-anchor"></a>
-					<h3>deleted</h3>
-					<div class="tsd-signature tsd-kind-icon">deleted<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/2e3d9be/lib/Types.ts#L13">Types.ts:13</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="depositaddress" class="tsd-anchor"></a>
-					<h3>deposit<wbr>Address</h3>
-					<div class="tsd-signature tsd-kind-icon">deposit<wbr>Address<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/2e3d9be/lib/Types.ts#L15">Types.ts:15</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="depositqrcode" class="tsd-anchor"></a>
-					<h3>deposit<wbr>QrCode</h3>
-					<div class="tsd-signature tsd-kind-icon">deposit<wbr>QrCode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/2e3d9be/lib/Types.ts#L16">Types.ts:16</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="paymentid" class="tsd-anchor"></a>
-					<h3>payment<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">payment<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/2e3d9be/lib/Types.ts#L14">Types.ts:14</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="userid" class="tsd-anchor"></a>
-					<h3>user<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">user<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/2e3d9be/lib/Types.ts#L8">Types.ts:8</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="withdrawaddress" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> withdraw<wbr>Address</h3>
-					<div class="tsd-signature tsd-kind-icon">withdraw<wbr>Address<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/2e3d9be/lib/Types.ts#L17">Types.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/zoidbergZA/turtle-apps-node/blob/b7f8821/lib/Types.ts#L45">Types.ts:45</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -233,48 +167,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_types_.appuser.html" class="tsd-kind-icon">App<wbr>User</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.appuser.html#appid" class="tsd-kind-icon">app<wbr>Id</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.appuser.html#balancelocked" class="tsd-kind-icon">balance<wbr>Locked</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.appuser.html#balanceunlocked" class="tsd-kind-icon">balance<wbr>Unlocked</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.appuser.html#createdat" class="tsd-kind-icon">created<wbr>At</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.appuser.html#data" class="tsd-kind-icon">data</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.appuser.html#deleted" class="tsd-kind-icon">deleted</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.appuser.html#depositaddress" class="tsd-kind-icon">deposit<wbr>Address</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.appuser.html#depositqrcode" class="tsd-kind-icon">deposit<wbr>QrCode</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.appuser.html#paymentid" class="tsd-kind-icon">payment<wbr>Id</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.appuser.html#userid" class="tsd-kind-icon">user<wbr>Id</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_types_.appuser.html#withdrawaddress" class="tsd-kind-icon">withdraw<wbr>Address</a>
-							</li>
-						</ul>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_types_.account.html" class="tsd-kind-icon">Account</a>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_types_.deposit.html" class="tsd-kind-icon">Deposit</a>
 					</li>
@@ -284,17 +179,38 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_types_.recipient.html" class="tsd-kind-icon">Recipient</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_types_.usertransfer.html" class="tsd-kind-icon">User<wbr>Transfer</a>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_types_.transfer.html" class="tsd-kind-icon">Transfer</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.transfer.html#appid" class="tsd-kind-icon">app<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.transfer.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.transfer.html#recipients" class="tsd-kind-icon">recipients</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.transfer.html#senderid" class="tsd-kind-icon">sender<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_types_.transfer.html#timestamp" class="tsd-kind-icon">timestamp</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_types_.withdrawal.html" class="tsd-kind-icon">Withdrawal</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/_types_.html#depositstatus" class="tsd-kind-icon">Deposit<wbr>Status</a>
+						<a href="../modules/_types_.html#accountsorderby" class="tsd-kind-icon">Accounts<wbr>Order<wbr>By</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/_types_.html#usersorderby" class="tsd-kind-icon">Users<wbr>Order<wbr>By</a>
+						<a href="../modules/_types_.html#depositstatus" class="tsd-kind-icon">Deposit<wbr>Status</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
 						<a href="../modules/_types_.html#withdrawstatus" class="tsd-kind-icon">Withdraw<wbr>Status</a>
