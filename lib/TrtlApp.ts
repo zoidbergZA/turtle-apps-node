@@ -1,6 +1,6 @@
 // import * as crypto from 'crypto';
 import axios from 'axios';
-import { AppUser, Deposit, Withdrawal, InitOptions, UserTransfer, Recipient, UsersOrderBy } from './Types';
+import { Account, Deposit, Withdrawal, InitOptions, Transfer, Recipient, AccountsOrderBy } from './Types';
 import { ServiceError } from './ServiceError';
 
 export class TrtlApp {
@@ -40,108 +40,108 @@ export class TrtlApp {
     }
 
     /**
-     * Creates a new app user.
+     * Creates a new app account.
      *
      * Example:
      *
      * ```ts
      *
-     * const [user, error] = await TrtlApp.createUser();
+     * const [account, error] = await TrtlApp.createAccount();
      *
-     * if (user) {
-     *  console.log(`New user created with id: ${user.userId}`);
+     * if (account) {
+     *  console.log(`New account created with id: ${account.id}`);
      * }
      * ```
-     * @returns {Promise<[AppUser | undefined, undefined | ServiceError]>} Returns the newly created user object or an error.
+     * @returns {Promise<[Account | undefined, undefined | ServiceError]>} Returns the newly created account object or an error.
      */
-    public static async createUser(): Promise<[AppUser | undefined, undefined | ServiceError]> {
+    public static async createAccount(): Promise<[Account | undefined, undefined | ServiceError]> {
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
         }
 
-        const endpoint = `${this.apiBase}/${this.appId}/users`;
+        const endpoint = `${this.apiBase}/${this.appId}/accounts`;
 
         try {
             const response = await axios.post(endpoint);
-            return [(response.data as AppUser), undefined];
+            return [(response.data as Account), undefined];
         } catch (error) {
             return [undefined, error.response.data];
         }
     }
 
     /**
-     * Gets an existing app user.
+     * Gets an existing app account.
      *
      * Example:
      *
      * ```ts
      *
-     * const [user, error] = await TrtlApp.getUser('8RgwiWmgiYKQlUHWGaTW');
+     * const [account, error] = await TrtlApp.getAccount('8RgwiWmgiYKQlUHWGaTW');
      *
-     * if (user) {
-     *  console.log(`User with id: ${userId} has balance: ${user.balanceUnlocked}`);
+     * if (account) {
+     *  console.log(`Account with id: ${account.id} has balance: ${account.balanceUnlocked}`);
      * }
      * ```
-     * @param {string} userId The ID of the user to retrieve.
-     * @returns {Promise<[AppUser | undefined, undefined | ServiceError]>} Returns the user object or an error.
+     * @param {string} accountId The ID of the account to retrieve.
+     * @returns {Promise<[Account | undefined, undefined | ServiceError]>} Returns the account object or an error.
      */
-    public static async getUser(userId: string): Promise<[AppUser | undefined, undefined | ServiceError]> {
+    public static async getAccount(accountId: string): Promise<[Account | undefined, undefined | ServiceError]> {
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
         }
 
-        const endpoint = `${this.apiBase}/${this.appId}/users/${userId}`;
+        const endpoint = `${this.apiBase}/${this.appId}/accounts/${accountId}`;
 
         try {
             const response = await axios.get(endpoint);
-            return [(response.data as AppUser), undefined];
+            return [(response.data as Account), undefined];
         } catch (error) {
             return [undefined, error.response.data];
         }
     }
 
     /**
-     * Gets a list of app users.
+     * Gets a list of app accounts.
      *
      * Example:
      *
      * ```ts
      *
-     * const [users, error] = await TrtlApp.getUsers('createdAt', 25);
+     * const [accounts, error] = await TrtlApp.getAccounts('createdAt', 25);
      *
-     * if (users) {
-     *  console.log(`Amount of users returned: ${users.length}`);
+     * if (accounts) {
+     *  console.log(`Amount of accounts returned: ${accounts.length}`);
      * }
      * ```
-     * @param {UsersOrderBy} orderBy Property to order the users by.
-     * @param {number} limit The max amount of users to retrieve.
-     * @param {string} startAfterUser Only return users after this user id, used for pagination.
-     * @returns {Promise<[AppUser[] | undefined, undefined | ServiceError]>} Returns the list of users.
+     * @param {AccountsOrderBy} orderBy Property to order the accounts by.
+     * @param {number} limit The max amount of accounts to retrieve.
+     * @param {string} startAfterAccount Only return accounts after this account id, used for pagination.
+     * @returns {Promise<[Account[] | undefined, undefined | ServiceError]>} Returns the list of accounts.
 
        NOTE: disabled this endpoint for now by setting it private
      */
-    private static async getUsers(
-        orderBy: UsersOrderBy = 'createdAt',
+    private static async getAccounts(
+        orderBy: AccountsOrderBy = 'createdAt',
         limit?: number,
-        startAfterUser?: string): Promise<[AppUser[] | undefined, undefined | ServiceError]> {
+        startAfterAccount?: string): Promise<[Account[] | undefined, undefined | ServiceError]> {
 
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
         }
 
-        let endpoint = `${this.apiBase}/${this.appId}/users?orderBy=${orderBy}`;
+        let endpoint = `${this.apiBase}/${this.appId}/accounts?orderBy=${orderBy}`;
 
         if (limit) {
             endpoint += `&limit=${limit}`;
         }
 
-        if (startAfterUser) {
-            endpoint += `&startAfter=${startAfterUser}`;
+        if (startAfterAccount) {
+            endpoint += `&startAfter=${startAfterAccount}`;
         }
 
         try {
             const response = await axios.get(endpoint);
-            return [(response.data as AppUser[]), undefined];
+            return [(response.data as Account[]), undefined];
         } catch (error) {
             return [undefined, error.response.data];
         }
@@ -179,7 +179,7 @@ export class TrtlApp {
     }
 
     /**
-     * Sets the withdraw address for a user.
+     * Sets the withdraw address for an account.
      *
      * Example:
      *
@@ -188,22 +188,22 @@ export class TrtlApp {
      * const [address, error] = await TrtlApp.setWithdrawAddress('8RgwiWmgiYKQlUHWGaTW', 'TRTLv32bGBP2cfM3SdijU4TTYnCPoR33g5eTas6n9HamBvu8ozc9BWHZza5j7cmBFSgh4dmmGRongfoEEzcvuAEF8dLxixsS7he');
      *
      * if (address) {
-     *  console.log(`user withdraw address successfully set to: ${address}`);
+     *  console.log(`account withdraw address successfully set to: ${address}`);
      * }
      * ```
-     * @param {string} userId The id of the user.
-     * @param {string} address The address that withdrawals will be sent to for this user.
+     * @param {string} accountId The id of the account.
+     * @param {string} address The address that withdrawals will be sent to for this account.
      * @returns {Promise<[string | undefined, undefined | ServiceError]>} Returns the newly set withdraw address or an error.
      */
     public static async setWithdrawAddress(
-        userId: string,
+        accountId: string,
         address: string): Promise<[string | undefined, undefined | ServiceError]> {
 
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
         }
 
-        const endpoint = `${this.apiBase}/${this.appId}/users/${userId}/withdrawaddress`;
+        const endpoint = `${this.apiBase}/${this.appId}/accounts/${accountId}/withdrawaddress`;
 
         try {
             const response = await axios.put(endpoint, {
@@ -216,7 +216,7 @@ export class TrtlApp {
     }
 
     /**
-     * Transfer funds from one user to another.
+     * Transfer funds from one account to another.
      *
      * Example:
      *
@@ -225,18 +225,18 @@ export class TrtlApp {
      * const [transfer, error] = await TrtlApp.transfer('8RgwiWmgiYKQlUHWGaTW', 'EWshpvxky57RrAeBCf8Z', 42);
      *
      * if (transfer) {
-     *  console.log(`user transfer succeeded, transfer id: ${transfer.id}`);
+     *  console.log(`account transfer succeeded, transfer id: ${transfer.id}`);
      * }
      * ```
-     * @param {string} senderId The id of the user sending the funds.
-     * @param {string} receiverId The receiving user's id.
+     * @param {string} senderId The id of the account sending the funds.
+     * @param {string} receiverId The receiving account's id.
      * @param {number} amount The amount to transfer in atomic units.
-     * @returns {Promise<[UserTransfer | undefined, undefined | ServiceError]>} Returns the transfer object if the transfer succeeded or an error.
+     * @returns {Promise<[Transfer | undefined, undefined | ServiceError]>} Returns the transfer object if the transfer succeeded or an error.
      */
     public static async transfer(
         senderId: string,
         receiverId: string,
-        amount: number): Promise<[UserTransfer | undefined, undefined | ServiceError]> {
+        amount: number): Promise<[Transfer | undefined, undefined | ServiceError]> {
 
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
@@ -245,7 +245,7 @@ export class TrtlApp {
         const endpoint = `${this.apiBase}/${this.appId}/transfers`;
 
         const recipients: Recipient[] = [
-            { userId: receiverId, amount: amount }
+            { accountId: receiverId, amount: amount }
         ];
 
         try {
@@ -253,14 +253,14 @@ export class TrtlApp {
                 senderId: senderId,
                 recipients: recipients
             });
-            return [(response.data as UserTransfer), undefined];
+            return [(response.data as Transfer), undefined];
         } catch (error) {
             return [undefined, error.response.data];
         }
     }
 
     /**
-     * Transfer funds from one user to many recipients.
+     * Transfer funds from one account to many recipients.
      *
      * Example:
      *
@@ -269,23 +269,23 @@ export class TrtlApp {
      * const sender = '8RgwiWmgiYKQlUHWGaTW';
      *
      * const recipients = [
-     *  { userId: 'DawR7cEvQjEWMBVmMkkn', amount: 22 },
-     *  { userId: 'rwszORa1qaSXK0RbZ7F5', amount: 25 }
+     *  { accountId: 'DawR7cEvQjEWMBVmMkkn', amount: 22 },
+     *  { accountId: 'rwszORa1qaSXK0RbZ7F5', amount: 25 }
      * ];
      *
      * const [transfer, error] = await TrtlApp.transferMany(sender, recipients);
      *
      * if (transfer) {
-     *  console.log(`user transfer succeeded, transfer id: ${transfer.id}`);
+     *  console.log(`account transfer succeeded, transfer id: ${transfer.id}`);
      * }
      * ```
-     * @param {string} senderId The id of the user sending the funds.
+     * @param {string} senderId The id of the account sending the funds.
      * @param {Recipient[]} recipients The array of recipients.
-     * @returns {Promise<[UserTransfer | undefined, undefined | ServiceError]>} Returns the transfer object if the transfer succeeded or an error.
+     * @returns {Promise<[Transfer | undefined, undefined | ServiceError]>} Returns the transfer object if the transfer succeeded or an error.
      */
     public static async transferMany(
         senderId: string,
-        recipients: Recipient[]): Promise<[UserTransfer | undefined, undefined | ServiceError]> {
+        recipients: Recipient[]): Promise<[Transfer | undefined, undefined | ServiceError]> {
 
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
@@ -298,7 +298,7 @@ export class TrtlApp {
                 senderId: senderId,
                 recipients: recipients
             });
-            return [(response.data as UserTransfer), undefined];
+            return [(response.data as Transfer), undefined];
         } catch (error) {
             return [undefined, error.response.data];
         }
@@ -318,9 +318,9 @@ export class TrtlApp {
      * }
      * ```
      * @param {string} transferId The ID of the transfer to retrieve.
-     * @returns {Promise<[UserTransfer | undefined, undefined | ServiceError]>} Returns the transfer object or an error.
+     * @returns {Promise<[Transfer | undefined, undefined | ServiceError]>} Returns the transfer object or an error.
      */
-    public static async getTransfer(transferId: string): Promise<[UserTransfer | undefined, undefined | ServiceError]> {
+    public static async getTransfer(transferId: string): Promise<[Transfer | undefined, undefined | ServiceError]> {
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
         }
@@ -329,14 +329,14 @@ export class TrtlApp {
 
         try {
             const response = await axios.get(endpoint);
-            return [(response.data as UserTransfer), undefined];
+            return [(response.data as Transfer), undefined];
         } catch (error) {
             return [undefined, error.response.data];
         }
     }
 
     /**
-     * Gets the current node fee that will be charged on user withdrawals.
+     * Gets the current node fee that will be charged on account withdrawals.
      *
      * Example:
      *
@@ -345,7 +345,7 @@ export class TrtlApp {
      * const [fee, error] = await TrtlApp.getFee();
      *
      * if (fee) {
-     *  console.log(`The current node fee for user withdrawals is: ${fee}`);
+     *  console.log(`The current node fee for account withdrawals is: ${fee}`);
      * }
      * ```
      * @returns {Promise<[number | undefined, undefined | ServiceError]>} Returns the withdraw fee in atomic units or an error.
@@ -366,7 +366,7 @@ export class TrtlApp {
     }
 
     /**
-     * Withdraws the specified amount from user's balance.
+     * Withdraws the specified amount from account's balance.
      *
      * Example:
      *
@@ -378,13 +378,13 @@ export class TrtlApp {
      *  console.log(`Withdrawal request created successfully and is beeing processed, paymentId: ${withdrawal.paymentId}`);
      * }
      * ```
-     * @param {string} userId The id of the user withdrawing funds.
+     * @param {string} accountId The id of the account withdrawing funds.
      * @param {number} amount The amount to withdraw in atomic units.
-     * @param {string} sendAddress Optional address where the funds will be sent, if none is provided the user's withdraw address will be used.
+     * @param {string} sendAddress Optional address where the funds will be sent, if none is provided the account's withdraw address will be used.
      * @returns {Promise<[Withdrawal | undefined, undefined | ServiceError]>} Returns the withdrawal object or an error.
      */
     public static async withdraw(
-        userId: string,
+        accountId: string,
         amount: number,
         sendAddress?: string): Promise<[Withdrawal | undefined, undefined | ServiceError]> {
 
@@ -394,7 +394,7 @@ export class TrtlApp {
 
         const endpoint = `${this.apiBase}/${this.appId}/withdrawals`;
         const body: any = {
-            userId: userId,
+            accountId: accountId,
             amount: amount
         }
 
@@ -424,7 +424,7 @@ export class TrtlApp {
      * }
      * ```
      * @param {string} withdrawalId The ID of the withdrawal to retrieve.
-     * @returns {Promise<[UserTransfer | undefined, undefined | ServiceError]>} Returns the withdrawal object or an error.
+     * @returns {Promise<[Transfer | undefined, undefined | ServiceError]>} Returns the withdrawal object or an error.
      */
     public static async getWithdrawal(withdrawalId: string): Promise<[Withdrawal | undefined, undefined | ServiceError]> {
         if (!this.initialized) {

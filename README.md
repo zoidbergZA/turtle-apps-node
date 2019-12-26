@@ -19,30 +19,30 @@ import { TrtlApp } from 'trtl-apps';
 TrtlApp.initialize('YOUR_APP_ID', 'YOUR_APP_SECRET');
 ```
 
-Create users
+Create accounts
 
 ```ts
-const [alice, error]  = await TrtlApp.createUser();
-const [bob, error]    = await TrtlApp.createUser();
+const [alice, error]  = await TrtlApp.createAccount();
+const [bob, error]    = await TrtlApp.createAccount();
 
 console.log(`alice deposit address: ${alice.depositAddress}`);
 ```
 
-Transfer from one user to another
+Transfer from one account to another
 
 ```ts
-const [transfer, error] = await TrtlApp.transfer(alice.userId, bob.userId, 120);
+const [transfer, error] = await TrtlApp.transfer(alice.id, bob.id, 120);
 
 if (transfer) {
-    console.log(`user transfer succeeded, transfer id: ${transfer.id}`);
+    console.log(`transfer succeeded, transfer id: ${transfer.id}`);
 }
 ```
 
-User withdraw
+Account withdraw
 
 ```ts
 const [withdrawal, error] = await TrtlApp.withdraw(
-    bob.userId,
+    bob.id,
     42,
     'TRTLv32bGBP2cfM3SdijU4TTYnCPoR33g5eTas6n9HamBvu8ozc9BWHZza5j7cmBFSgh4dmmGRongfoEEzcvuAEF8dLxixsS7he');
 
