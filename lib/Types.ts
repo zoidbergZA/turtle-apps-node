@@ -12,6 +12,7 @@ export interface Account {
   createdAt: number;
   deleted: boolean;
   paymentId: string;
+  spendSignaturePrefix: string;
   depositAddress: string;
   depositQrCode: string;
   withdrawAddress?: string;
@@ -50,16 +51,16 @@ export interface Recipient {
   amount: number;
 }
 
-export type WithdrawStatus = 'confirming' | 'completed';
+export type WithdrawStatus = 'preparing' | 'pending' | 'confirming' | 'faulty' | 'completed';
 
-export interface Withdrawal
-{
+export interface Withdrawal {
   id: string;
-  paymentId: string,
+  paymentId: string;
   appId: string;
   accountId: string;
   amount: number;
   fee: number;
+  userDebited: boolean;
   address: string;
   timestamp: number;
   lastUpdate: number;
@@ -68,4 +69,5 @@ export interface Withdrawal
   blockHeight: number;
   failed: boolean;
   txHash?: string;
+  nodeErrorCode?: number;
 }
