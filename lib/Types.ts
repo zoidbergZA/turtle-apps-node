@@ -60,6 +60,8 @@ export interface Withdrawal {
   accountId: string;
   amount: number;
   fee: number;
+  serviceChargeAmount: number;
+  serviceChargeId?: string;
   userDebited: boolean;
   address: string;
   timestamp: number;
