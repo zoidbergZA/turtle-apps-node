@@ -51,7 +51,7 @@ export interface Recipient {
   amount: number;
 }
 
-export type WithdrawStatus = 'preparing' | 'pending' | 'confirming' | 'faulty' | 'completed';
+export type WithdrawStatus = 'pending' | 'confirming' | 'faulty' | 'lost' | 'completed';
 
 export interface Withdrawal {
   id: string;
@@ -70,6 +70,18 @@ export interface Withdrawal {
   requestedAtBlock: number;
   blockHeight: number;
   failed: boolean;
-  txHash?: string;
+  preparedWithdrawalId: string;
+  txHash: string;
   nodeErrorCode?: number;
+}
+
+export interface WithdrawalPreview {
+  id: string;
+  appId: string;
+  accountId: string;
+  timestamp: number;
+  address: string;
+  amount: number;
+  fee: number;
+  serviceCharge: number;
 }

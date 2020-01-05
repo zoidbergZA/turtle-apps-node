@@ -1,6 +1,6 @@
 // import * as crypto from 'crypto';
 import axios from 'axios';
-import { Account, Deposit, Withdrawal, InitOptions, Transfer, Recipient, AccountsOrderBy } from './Types';
+import { Account, Deposit, Withdrawal, InitOptions, Transfer, Recipient, AccountsOrderBy, WithdrawalPreview } from './Types';
 import { ServiceError } from './ServiceError';
 
 export class TrtlApp {
@@ -381,18 +381,18 @@ export class TrtlApp {
      * @param {string} accountId The id of the account withdrawing funds.
      * @param {number} amount The amount to withdraw in atomic units.
      * @param {string} sendAddress Optional address where the funds will be sent, if none is provided the account's withdraw address will be used.
-     * @returns {Promise<[Withdrawal | undefined, undefined | ServiceError]>} Returns the withdrawal object or an error.
+     * @returns {Promise<[WithdrawalPreview | undefined, undefined | ServiceError]>} Returns the withdrawal object or an error.
      */
-    public static async withdraw(
+    public static async prepareWithdrawal(
         accountId: string,
         amount: number,
-        sendAddress?: string): Promise<[Withdrawal | undefined, undefined | ServiceError]> {
+        sendAddress?: string): Promise<[WithdrawalPreview | undefined, undefined | ServiceError]> {
 
         if (!this.initialized) {
             return [undefined, new ServiceError('service/not-initialized')];
         }
 
-        const endpoint = `${this.apiBase}/${this.appId}/withdrawals`;
+        const endpoint = `${this.apiBase}/${this.appId}/prepared_withdrawals`;
         const body: any = {
             accountId: accountId,
             amount: amount
@@ -400,6 +400,43 @@ export class TrtlApp {
 
         if (sendAddress) {
             body.sendAddress = sendAddress
+        }
+
+        try {
+            const response = await axios.post(endpoint, body);
+            return [response.data as WithdrawalPreview, undefined];
+        } catch (error) {
+            return [undefined, error.response.data];
+        }
+    }
+
+    /**
+     * Withdraws the specified amount from account's balance.
+     *
+     * Example:
+     *
+     * ```ts
+     *
+     * const [withdrawal, error] = await TrtlApp.withdraw('8RgwiWmgiYKQlUHWGaTW', 21);
+     *
+     * if (withdrawal) {
+     *  console.log(`Withdrawal request created successfully and is beeing processed, paymentId: ${withdrawal.paymentId}`);
+     * }
+     * ```
+     * @param {string} accountId The id of the account withdrawing funds.
+     * @param {number} amount The amount to withdraw in atomic units.
+     * @param {string} sendAddress Optional address where the funds will be sent, if none is provided the account's withdraw address will be used.
+     * @returns {Promise<[Withdrawal | undefined, undefined | ServiceError]>} Returns the withdrawal object or an error.
+     */
+    public static async withdraw(preparedWithdrawalId: string): Promise<[Withdrawal | undefined, undefined | ServiceError]> {
+
+        if (!this.initialized) {
+            return [undefined, new ServiceError('service/not-initialized')];
+        }
+
+        const endpoint = `${this.apiBase}/${this.appId}/withdrawals`;
+        const body: any = {
+            preparedWithdrawalId: preparedWithdrawalId
         }
 
         try {
