@@ -72,7 +72,8 @@ export interface Withdrawal {
   failed: boolean;
   preparedWithdrawalId: string;
   txHash: string;
-  nodeErrorCode?: number;
+  daemonErrorCode?: number;
+  retries: number;
 }
 
 export interface WithdrawalPreview {

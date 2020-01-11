@@ -336,54 +336,24 @@ export class TrtlApp {
     }
 
     /**
-     * Gets the current node fee that will be charged on account withdrawals.
+     * Creates a withdrawal preview which contains information like the transaction fee.
      *
      * Example:
      *
      * ```ts
      *
-     * const [fee, error] = await TrtlApp.getFee();
+     * const [preview, error] = await TrtlApp.withdrawalPreview('8RgwiWmgiYKQlUHWGaTW', 21);
      *
-     * if (fee) {
-     *  console.log(`The current node fee for account withdrawals is: ${fee}`);
-     * }
-     * ```
-     * @returns {Promise<[number | undefined, undefined | ServiceError]>} Returns the withdraw fee in atomic units or an error.
-     */
-    public static async getFee(): Promise<[number | undefined, undefined | ServiceError]> {
-        if (!this.initialized) {
-            return [undefined, new ServiceError('service/not-initialized')];
-        }
-
-        const endpoint = `${this.apiBase}/service/nodefee`;
-
-        try {
-            const response = await axios.get(endpoint);
-            return [response.data.fee as number, undefined];
-        } catch (error) {
-            return [undefined, error.response.data];
-        }
-    }
-
-    /**
-     * Withdraws the specified amount from account's balance.
-     *
-     * Example:
-     *
-     * ```ts
-     *
-     * const [withdrawal, error] = await TrtlApp.withdraw('8RgwiWmgiYKQlUHWGaTW', 21);
-     *
-     * if (withdrawal) {
-     *  console.log(`Withdrawal request created successfully and is beeing processed, paymentId: ${withdrawal.paymentId}`);
+     * if (preview) {
+     *  console.log(`Withdrawal preview created successfully, id: ${preview.id}, fee: ${preview.fee}`);
      * }
      * ```
      * @param {string} accountId The id of the account withdrawing funds.
      * @param {number} amount The amount to withdraw in atomic units.
      * @param {string} sendAddress Optional address where the funds will be sent, if none is provided the account's withdraw address will be used.
-     * @returns {Promise<[WithdrawalPreview | undefined, undefined | ServiceError]>} Returns the withdrawal object or an error.
+     * @returns {Promise<[WithdrawalPreview | undefined, undefined | ServiceError]>} Returns the withdrawal preview object or an error.
      */
-    public static async prepareWithdrawal(
+    public static async withdrawalPreview(
         accountId: string,
         amount: number,
         sendAddress?: string): Promise<[WithdrawalPreview | undefined, undefined | ServiceError]> {
@@ -411,21 +381,19 @@ export class TrtlApp {
     }
 
     /**
-     * Withdraws the specified amount from account's balance.
+     * Executes a withdrawal from a previously created withdrawal preview.
      *
      * Example:
      *
      * ```ts
      *
-     * const [withdrawal, error] = await TrtlApp.withdraw('8RgwiWmgiYKQlUHWGaTW', 21);
+     * const [withdrawal, error] = await TrtlApp.withdraw('8RgwiWmgiYKQlUHWGaTW');
      *
      * if (withdrawal) {
      *  console.log(`Withdrawal request created successfully and is beeing processed, paymentId: ${withdrawal.paymentId}`);
      * }
      * ```
-     * @param {string} accountId The id of the account withdrawing funds.
-     * @param {number} amount The amount to withdraw in atomic units.
-     * @param {string} sendAddress Optional address where the funds will be sent, if none is provided the account's withdraw address will be used.
+     * @param {string} preparedWithdrawalId The id of a previously created withdrawal preview.
      * @returns {Promise<[Withdrawal | undefined, undefined | ServiceError]>} Returns the withdrawal object or an error.
      */
     public static async withdraw(preparedWithdrawalId: string): Promise<[Withdrawal | undefined, undefined | ServiceError]> {
