@@ -1,6 +1,6 @@
 {
   "name": "trtl-apps",
-  "version": "0.6.2",
+  "version": "0.7.0",
   "description": "a node-js package for interacting with turtle apps",
   "main": "dist/lib/index.js",
   "types": "dist/lib/index.d.ts",
