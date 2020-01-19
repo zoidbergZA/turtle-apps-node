@@ -59,8 +59,7 @@ export interface Withdrawal {
   appId: string;
   accountId: string;
   amount: number;
-  fee: number;
-  serviceChargeAmount: number;
+  fees: Fees;
   serviceChargeId?: string;
   userDebited: boolean;
   address: string;
@@ -83,6 +82,11 @@ export interface WithdrawalPreview {
   timestamp: number;
   address: string;
   amount: number;
-  fee: number;
+  fees: Fees;
+}
+
+export interface Fees {
+  txFee: number;
+  nodeFee: number;
   serviceCharge: number;
 }
