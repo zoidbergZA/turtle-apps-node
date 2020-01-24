@@ -88,5 +88,5 @@ export interface WithdrawalPreview {
 export interface Fees {
   txFee: number;
   nodeFee: number;
-  serviceCharge: number;
+  serviceFee: number;
 }
