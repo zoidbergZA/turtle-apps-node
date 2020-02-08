@@ -7,11 +7,11 @@ a node-js package for interacting with turtle apps.
 
 Create an app using the [TRTL apps console](https://trtlapps.io)
 
-Install the package
+### Install the package
 
 `npm install trtl-apps --save`
 
-Initialize your app
+### Initialize your app
 
 ```ts
 import { TrtlApp } from 'trtl-apps';
@@ -19,7 +19,7 @@ import { TrtlApp } from 'trtl-apps';
 TrtlApp.initialize('YOUR_APP_ID', 'YOUR_APP_SECRET');
 ```
 
-Create accounts
+### Create accounts
 
 ```ts
 const [alice, error]  = await TrtlApp.createAccount();
@@ -28,7 +28,7 @@ const [bob, error]    = await TrtlApp.createAccount();
 console.log(`alice deposit address: ${alice.depositAddress}`);
 ```
 
-Transfer from one account to another
+### Transfer from one account to another
 
 ```ts
 const [transfer, error] = await TrtlApp.transfer(alice.id, bob.id, 120);
@@ -38,16 +38,26 @@ if (transfer) {
 }
 ```
 
-Account withdraw
+### Account preview withdrawal
 
 ```ts
-const [withdrawal, error] = await TrtlApp.withdraw(
-    bob.id,
-    42,
-    'TRTLv32bGBP2cfM3SdijU4TTYnCPoR33g5eTas6n9HamBvu8ozc9BWHZza5j7cmBFSgh4dmmGRongfoEEzcvuAEF8dLxixsS7he');
+const [preview, error] = await TrtlApp.withdrawalPreview(
+                            '8RgwiWmgiYKQlUHWGaTW',
+                            2100,
+                            'TRTLv2fdtVVDjWKueQ1aAETchiGVWkDvi1ATNgqZ3nKc7biCLm7KzLYeCzfS46mWYNRe8JaMPcTGWAR874kkN2zQ7Mt16J1vzcA');
+
+if (preview) {
+ console.log(`Withdrawal preview created successfully, id: ${preview.id}, fee: ${preview.fee}`);
+}
+```
+
+### Account withdraw
+
+```ts
+const [withdrawal, error] = await TrtlApp.withdraw(preview.id);
 
 if (withdrawal) {
-    console.log(`Withdrawal request created successfully and is beeing processed, id: ${withdrawal.id}`);
+ console.log(`Withdrawal request created successfully and is beeing processed, paymentId: ${withdrawal.paymentId}`);
 }
 ```
 

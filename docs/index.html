@@ -73,31 +73,49 @@
 					<h2>Quickstart</h2>
 				</a>
 				<p>Create an app using the <a href="https://trtlapps.io">TRTL apps console</a></p>
-				<p>Install the package</p>
+				<a href="#install-the-package" id="install-the-package" style="color: inherit; text-decoration: none;">
+					<h3>Install the package</h3>
+				</a>
 				<p><code>npm install trtl-apps --save</code></p>
-				<p>Initialize your app</p>
+				<a href="#initialize-your-app" id="initialize-your-app" style="color: inherit; text-decoration: none;">
+					<h3>Initialize your app</h3>
+				</a>
 				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { TrtlApp } <span class="hljs-keyword">from</span> <span class="hljs-string">'trtl-apps'</span>;
 
 TrtlApp.initialize(<span class="hljs-string">'YOUR_APP_ID'</span>, <span class="hljs-string">'YOUR_APP_SECRET'</span>);</code></pre>
-				<p>Create accounts</p>
+				<a href="#create-accounts" id="create-accounts" style="color: inherit; text-decoration: none;">
+					<h3>Create accounts</h3>
+				</a>
 				<pre><code class="language-ts"><span class="hljs-keyword">const</span> [alice, error]  = <span class="hljs-keyword">await</span> TrtlApp.createAccount();
 <span class="hljs-keyword">const</span> [bob, error]    = <span class="hljs-keyword">await</span> TrtlApp.createAccount();
 
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`alice deposit address: <span class="hljs-subst">${alice.depositAddress}</span>`</span>);</code></pre>
-				<p>Transfer from one account to another</p>
+				<a href="#transfer-from-one-account-to-another" id="transfer-from-one-account-to-another" style="color: inherit; text-decoration: none;">
+					<h3>Transfer from one account to another</h3>
+				</a>
 				<pre><code class="language-ts"><span class="hljs-keyword">const</span> [transfer, error] = <span class="hljs-keyword">await</span> TrtlApp.transfer(alice.id, bob.id, <span class="hljs-number">120</span>);
 
 <span class="hljs-keyword">if</span> (transfer) {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`transfer succeeded, transfer id: <span class="hljs-subst">${transfer.id}</span>`</span>);
 }</code></pre>
-				<p>Account withdraw</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">const</span> [withdrawal, error] = <span class="hljs-keyword">await</span> TrtlApp.withdraw(
-    bob.id,
-    <span class="hljs-number">42</span>,
-    <span class="hljs-string">'TRTLv32bGBP2cfM3SdijU4TTYnCPoR33g5eTas6n9HamBvu8ozc9BWHZza5j7cmBFSgh4dmmGRongfoEEzcvuAEF8dLxixsS7he'</span>);
+				<a href="#account-preview-withdrawal" id="account-preview-withdrawal" style="color: inherit; text-decoration: none;">
+					<h3>Account preview withdrawal</h3>
+				</a>
+				<pre><code class="language-ts"><span class="hljs-keyword">const</span> [preview, error] = <span class="hljs-keyword">await</span> TrtlApp.withdrawalPreview(
+                            <span class="hljs-string">'8RgwiWmgiYKQlUHWGaTW'</span>,
+                            <span class="hljs-number">2100</span>,
+                            <span class="hljs-string">'TRTLv2fdtVVDjWKueQ1aAETchiGVWkDvi1ATNgqZ3nKc7biCLm7KzLYeCzfS46mWYNRe8JaMPcTGWAR874kkN2zQ7Mt16J1vzcA'</span>);
+
+<span class="hljs-keyword">if</span> (preview) {
+ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Withdrawal preview created successfully, id: <span class="hljs-subst">${preview.id}</span>, fee: <span class="hljs-subst">${preview.fee}</span>`</span>);
+}</code></pre>
+				<a href="#account-withdraw" id="account-withdraw" style="color: inherit; text-decoration: none;">
+					<h3>Account withdraw</h3>
+				</a>
+				<pre><code class="language-ts"><span class="hljs-keyword">const</span> [withdrawal, error] = <span class="hljs-keyword">await</span> TrtlApp.withdraw(preview.id);
 
 <span class="hljs-keyword">if</span> (withdrawal) {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Withdrawal request created successfully and is beeing processed, id: <span class="hljs-subst">${withdrawal.id}</span>`</span>);
+ <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Withdrawal request created successfully and is beeing processed, paymentId: <span class="hljs-subst">${withdrawal.paymentId}</span>`</span>);
 }</code></pre>
 				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
 					<h2>Contributing</h2>

@@ -342,7 +342,10 @@ export class TrtlApp {
      *
      * ```ts
      *
-     * const [preview, error] = await TrtlApp.withdrawalPreview('8RgwiWmgiYKQlUHWGaTW', 21);
+     * const [preview, error] = await TrtlApp.withdrawalPreview(
+     *                          '8RgwiWmgiYKQlUHWGaTW',
+     *                          2100,
+     *                          'TRTLv2fdtVVDjWKueQ1aAETchiGVWkDvi1ATNgqZ3nKc7biCLm7KzLYeCzfS46mWYNRe8JaMPcTGWAR874kkN2zQ7Mt16J1vzcA');
      *
      * if (preview) {
      *  console.log(`Withdrawal preview created successfully, id: ${preview.id}, fee: ${preview.fee}`);
