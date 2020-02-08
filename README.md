@@ -41,10 +41,11 @@ if (transfer) {
 ### Account preview withdrawal
 
 ```ts
-const [preview, error] = await TrtlApp.withdrawalPreview(
-                            '8RgwiWmgiYKQlUHWGaTW',
-                            2100,
-                            'TRTLv2fdtVVDjWKueQ1aAETchiGVWkDvi1ATNgqZ3nKc7biCLm7KzLYeCzfS46mWYNRe8JaMPcTGWAR874kkN2zQ7Mt16J1vzcA');
+const accountId = '8RgwiWmgiYKQlUHWGaTW';
+const amount = 2100;
+const address = 'TRTLv2fdtVVDjWKueQ1aAETchiGVWkDvi1ATNgqZ3nKc7biCLm7KzLYeCzfS46mWYNRe8JaMPcTGWAR874kkN2zQ7Mt16J1vzcA';
+
+const [preview, error] = await TrtlApp.withdrawalPreview(accountId, amount, address);
 
 if (preview) {
  console.log(`Withdrawal preview created successfully, id: ${preview.id}, fee: ${preview.fee}`);
