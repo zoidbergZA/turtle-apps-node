@@ -449,44 +449,37 @@ export class TrtlApp {
         }
     }
 
-    // NOTE: disabled the validateWebhookCall helper function for now because of issues related to using
-    // the 'crypto' module in frontend frameworks like angular.
+    /**
+     * Checks if the given value is a valid TurtleCoin address.
+     *
+     * Example:
+     *
+     * ```ts
+     *
+     * const address = 'TRTLv2fdtVVDjWKueQ1aAETchiGVWkDvi1ATNgqZ3nKc7biCLm7KzLYeCzfS46mWYNRe8JaMPcTGWAR874kkN2zQ7Mt16J1vzcA';
+     * const [isValid, error] = await TrtlApp.validateAddress(address);
+     *
+     * if (isValid) {
+     *  console.log(`this is a valid address`);
+     * }
+     * ```
+     * @returns {Promise<[boolean | undefined, undefined | ServiceError]>} Returns a boolean or an error.
+     */
+    public static async validateAddress(
+        address: string,
+        allowIntegrated: boolean = true): Promise<[boolean | undefined, undefined | ServiceError]> {
 
-    // /**
-    //  * Verifies that the webhook call was sent from TRTL apps using your app secret.
-    //  *
-    //  * Example:
-    //  *
-    //  * ```ts
-    //  *
-    //  * const signature = 'SIGNATURE';
-    //  * const requestBody: any = {}
-    //  *
-    //  * const [isValid, error] = await TrtlApp.validateWebhookCall(signature, requestBody);
-    //  *
-    //  * if (!error) {
-    //  *  console.log(`webhook request validation result: ${isValid}`);
-    //  * }
-    //  * ```
-    //  * @param {string} requestSignature This hash signature is passed along with each request in the headers as 'x-trtl-apps-signature'
-    //  * @param {string} requestBody The body of the POST request
-    //  * @returns {[boolean | undefined, undefined | ServiceError]} Returns a boolean or an error.
-    //  */
-    // public static validateWebhookCall(
-    //     requestSignature: string,
-    //     requestBody: any): [boolean | undefined, undefined | ServiceError] {
+        if (!this.initialized) {
+            return [undefined, new ServiceError('service/not-initialized')];
+        }
 
-    //     if (!this.initialized || !this.appSecret) {
-    //         return [undefined, new ServiceError('service/not-initialized')];
-    //     }
+        const endpoint = `${this.apiBase}/service/validateaddress?address=${address}&allowIntegrated=${allowIntegrated}`;
 
-    //     const hash = 'sha256=' + crypto
-    //         .createHmac("sha256", this.appSecret)
-    //         .update(JSON.stringify(requestBody))
-    //         .digest("hex");
-
-    //     const isValid = hash === requestSignature;
-
-    //     return [isValid, undefined];
-    // }
+        try {
+            const response = await axios.get(endpoint);
+            return [(response.data.isValid as boolean), undefined];
+        } catch (error) {
+            return [undefined, error.response.data];
+        }
+    }
 }
