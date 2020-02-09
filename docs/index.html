@@ -101,10 +101,11 @@ TrtlApp.initialize(<span class="hljs-string">'YOUR_APP_ID'</span>, <span class="
 				<a href="#account-preview-withdrawal" id="account-preview-withdrawal" style="color: inherit; text-decoration: none;">
 					<h3>Account preview withdrawal</h3>
 				</a>
-				<pre><code class="language-ts"><span class="hljs-keyword">const</span> [preview, error] = <span class="hljs-keyword">await</span> TrtlApp.withdrawalPreview(
-                            <span class="hljs-string">'8RgwiWmgiYKQlUHWGaTW'</span>,
-                            <span class="hljs-number">2100</span>,
-                            <span class="hljs-string">'TRTLv2fdtVVDjWKueQ1aAETchiGVWkDvi1ATNgqZ3nKc7biCLm7KzLYeCzfS46mWYNRe8JaMPcTGWAR874kkN2zQ7Mt16J1vzcA'</span>);
+				<pre><code class="language-ts"><span class="hljs-keyword">const</span> accountId = <span class="hljs-string">'8RgwiWmgiYKQlUHWGaTW'</span>;
+<span class="hljs-keyword">const</span> amount = <span class="hljs-number">2100</span>;
+<span class="hljs-keyword">const</span> address = <span class="hljs-string">'TRTLv2fdtVVDjWKueQ1aAETchiGVWkDvi1ATNgqZ3nKc7biCLm7KzLYeCzfS46mWYNRe8JaMPcTGWAR874kkN2zQ7Mt16J1vzcA'</span>;
+
+<span class="hljs-keyword">const</span> [preview, error] = <span class="hljs-keyword">await</span> TrtlApp.withdrawalPreview(accountId, amount, address);
 
 <span class="hljs-keyword">if</span> (preview) {
  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Withdrawal preview created successfully, id: <span class="hljs-subst">${preview.id}</span>, fee: <span class="hljs-subst">${preview.fee}</span>`</span>);
