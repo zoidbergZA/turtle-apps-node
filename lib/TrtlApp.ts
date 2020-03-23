@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { Account, Deposit, Withdrawal, InitOptions, Transfer, Recipient, AccountsOrderBy, WithdrawalPreview } from './Types';
 import { ServiceError } from './ServiceError';
+import { URLSearchParams } from 'url';
 
 export class TrtlApp {
     private static apiBase = 'https://trtlapps.io/api';
@@ -478,6 +479,58 @@ export class TrtlApp {
         try {
             const response = await axios.get(endpoint);
             return [(response.data.isValid as boolean), undefined];
+        } catch (error) {
+            return [undefined, error.response.data];
+        }
+    }
+
+    /**
+     * Gets a turtlecoin QR code for the given account
+     *
+     * Example:
+     *
+     * ```ts
+     *
+     * const accountId = '8G1SezkarWTua3v18zCt';
+     * const amount = 1500;
+     * const recipientName = 'Turtle shop';
+     *
+     * const [qrCode, error] = await TrtlApp.getAccountQrCode(accountId, amount, recipientName);
+     *
+     * if (qrcode) {
+     *  console.log(`QR code image url: ${qrCode}`);
+     * }
+     * ```
+     * @returns {Promise<[string | undefined, undefined | ServiceError]>} Returns an image url string or an error.
+     */
+    public static async getAccountQrCode(
+        accountId: string,
+        amount?: number,
+        recipientName?: string): Promise<[string | undefined, undefined | ServiceError]> {
+
+        if (!this.initialized) {
+            return [undefined, new ServiceError('service/not-initialized')];
+        }
+
+        const queryParams = new URLSearchParams();
+
+        if (recipientName) {
+            queryParams.append('name', recipientName);
+        }
+        if (amount) {
+            queryParams.append('amount', amount.toString());
+        }
+
+        const queryString = queryParams.toString();
+        let endpoint = `${this.apiBase}/apps/${this.appId}/accounts/${accountId}/qrcode`;
+
+        if (queryString.length > 0) {
+            endpoint += ('?' + queryString);
+        }
+
+        try {
+            const response = await axios.get(endpoint);
+            return [response.data.qrcode, undefined];
         } catch (error) {
             return [undefined, error.response.data];
         }
