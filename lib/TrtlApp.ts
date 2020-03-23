@@ -2,7 +2,6 @@
 import axios from 'axios';
 import { Account, Deposit, Withdrawal, InitOptions, Transfer, Recipient, AccountsOrderBy, WithdrawalPreview } from './Types';
 import { ServiceError } from './ServiceError';
-import { URLSearchParams } from 'url';
 
 export class TrtlApp {
     private static apiBase = 'https://trtlapps.io/api';
@@ -512,21 +511,16 @@ export class TrtlApp {
             return [undefined, new ServiceError('service/not-initialized')];
         }
 
-        const queryParams = new URLSearchParams();
+        const params: any = {};
 
         if (recipientName) {
-            queryParams.append('name', recipientName);
+            params.name = recipientName;
         }
         if (amount) {
-            queryParams.append('amount', amount.toString());
+            params.amount = amount;
         }
 
-        const queryString = queryParams.toString();
-        let endpoint = `${this.apiBase}/apps/${this.appId}/accounts/${accountId}/qrcode`;
-
-        if (queryString.length > 0) {
-            endpoint += ('?' + queryString);
-        }
+        let endpoint = this.buildQueryUrl(`${this.apiBase}/${this.appId}/accounts/${accountId}/qrcode`, params);
 
         try {
             const response = await axios.get(endpoint);
@@ -534,5 +528,20 @@ export class TrtlApp {
         } catch (error) {
             return [undefined, error.response.data];
         }
+    }
+
+    private static buildQueryUrl(url: string, parameters: any): string{
+        let qs = '';
+
+        for(const key in parameters) {
+          const value = parameters[key];
+          qs += encodeURIComponent(key) + '=' + encodeURIComponent(value) + '&';
+        }
+
+        if (qs.length > 0){
+          qs = qs.substring(0, qs.length - 1); //chop off last "&"
+          url = url + "?" + qs;
+        }
+        return url;
     }
 }
