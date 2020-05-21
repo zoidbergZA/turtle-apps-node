@@ -530,7 +530,7 @@ export class TrtlApp {
         }
     }
 
-    private static buildQueryUrl(url: string, parameters: any): string{
+    private static buildQueryUrl(url: string, parameters: any): string {
         let qs = '';
 
         for(const key in parameters) {

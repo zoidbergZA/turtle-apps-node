@@ -61,7 +61,7 @@ export interface Withdrawal {
   amount: number;
   fees: Fees;
   serviceChargeId?: string;
-  userDebited: boolean;
+  accountDebited: boolean;
   address: string;
   timestamp: number;
   lastUpdate: number;
