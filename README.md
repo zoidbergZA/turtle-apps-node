@@ -62,6 +62,13 @@ if (withdrawal) {
 }
 ```
 
+## CI/CD
+
+This project uses Github actions to automatically build and publish the node package to NPM when a new release tag is created. For this to work correctly the following secret must be added to Github at `settings -> secrets`:
+
+secret name: `NPM_TOKEN`
+secret value: `YOUR NPM TOKEN`
+
 ## Contributing
 
 ### Documentation
